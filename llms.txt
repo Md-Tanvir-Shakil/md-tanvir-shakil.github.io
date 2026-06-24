@@ -1,0 +1,32 @@
+# MD. Tanvir Shakil
+
+> Electronics and embedded-systems engineer and researcher based in Dhaka, Bangladesh. Solution Architect (IoT, AIoT, IIoT) at MBM Group. Focus: edge AI / TinyML on microcontrollers, sensor fusion, low-power PCB and firmware design, CubeSat / space systems, precision agriculture, and EV power electronics. Open to graduate research (M.Sc. / Ph.D.).
+
+## Current role
+- Solution Architect (IoT, AIoT, IIoT) — MBM Group, Dhaka, Bangladesh.
+
+## Research experience
+- Junior Research Fellow, SPARRSO (Bangladesh Space Research Organization), FY2023–FY2025 — 1U CubeSat design and manufacture, engineering-model CubeSat, prototype solid propulsion, full PCB and firmware.
+- Research Associate / IoT Engineer, BAU-RIC (Bangladesh Agricultural University), Nov 2024–Nov 2025 — AI-based estrus-detection harness tag for cattle; PCB, firmware, sensor fusion, AIoT.
+
+## Selected industry experience
+- Palki Motors Ltd. — Embedded Systems Lead & HoD (EV internal systems, charging, power electronics).
+- THT Space Electrical Company Ltd. — AIoT Engineer.
+- Adorsho PraniSheba — IoT Engineer (livestock AIoT wearable; TinyML, BLE, MQTT).
+- FronTech Ltd. — Sr. Executive R&D (IIoT predictive maintenance, active PFC, FFT).
+- Neways International — IoT Engineer (smart home automation and security; 1:N fingerprint matching).
+
+## Publications
+- IEEE ECCE 2025 — IoT-based energy-efficient smart home automation. DOI: 10.1109/ECCE64574.2025.11013781
+- JCSTS 2025 — AI-enhanced smart assistive stick for the visually impaired. DOI: 10.32996/jcsts.2025.7.1.21
+- JMHS 2025 — Embedded ventilator for accessible respiratory support. DOI: 10.32996/jmhs.2025.6.1.14
+- IJSB 2023 — DTMF-based remote irrigation with interactive voice response. DOI: 10.5281/zenodo.7534982
+
+## Expertise
+Embedded C/C++, STM32, ESP32, ARM Cortex-M, AVR, FreeRTOS, PCB design (Altium), low-power design, TinyML, edge AI, TensorFlow/Keras, sensor fusion, FFT/DSP, MQTT, CoAP, LoRa, BLE, GSM, RS485/Modbus, CAN bus, AWS IoT, Firebase, Python, MicroPython, MATLAB.
+
+## Contact
+- Email: mytanvir50@gmail.com
+- LinkedIn: https://www.linkedin.com/in/mdtanvirshakil
+- Location: Dhaka, Bangladesh
+- Website: https://md-tanvir-shakil.github.io/
