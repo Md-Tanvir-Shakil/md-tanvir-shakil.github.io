@@ -18,8 +18,10 @@ algorithms:
 architectureNotes: "Wearable sensor node performs on-device TinyML inference over fused IMU and temperature data, then reports predictions over Wi-Fi/MQTT to a cloud backend for continuous farm-level monitoring."
 results: "Deployed to market with field validation on livestock farms. [ADD QUANTITATIVE RESULTS — e.g. detection accuracy, battery life, number of farms/animals monitored — once available.]"
 myContribution: "Led end-to-end development as Hardware & System Architect: hardware design, firmware development, AI model deployment, and field validation with livestock farms. Also delivered PCB design, firmware, and system design for the related BAU-RIC / Adorsho PraniSheba research and engineering work."
-images: []
-coverImage: ""
+images:
+  - "/images/projects/cattle-estrus-detection-device-1.png"
+  - "/images/projects/cattle-estrus-detection-device-2.png"
+coverImage: "/images/projects/cattle-estrus-detection-device-1.png"
 githubRepo: ""
 demoUrl: ""
 documentationUrl: ""

@@ -19,8 +19,10 @@ algorithms:
 architectureNotes: "Onboard unit authenticates each student via RFID/NFC, tags the event with GPS location and timestamp, captures a boarding photo, and transmits the record over Wi-Fi to a backend that pushes real-time notifications to guardians."
 results: "20+ operational devices deployed and in live field operation since 2023."
 myContribution: "Designed and deployed the system end-to-end as Hardware & System Architect, including field deployment and ongoing system optimization."
-images: []
-coverImage: ""
+images:
+  - "/images/projects/smart-school-bus-monitoring-1.png"
+  - "/images/projects/smart-school-bus-monitoring-2.png"
+coverImage: "/images/projects/smart-school-bus-monitoring-1.png"
 githubRepo: ""
 demoUrl: ""
 documentationUrl: ""

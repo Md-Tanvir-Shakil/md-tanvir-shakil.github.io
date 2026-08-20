@@ -17,8 +17,10 @@ algorithms:
 architectureNotes: "Machine-level edge processing unit at each sewing station computes and displays KPIs locally, then reports over MQTT/Wi-Fi to a centralized dashboard for monitoring across multiple machines."
 results: "[ADD MEASURABLE RESULTS once available from field testing — e.g. efficiency gains observed, number of machines deployed.]"
 myContribution: "Led end-to-end development as Hardware & System Architect: hardware design, firmware development, embedded UI design, system integration, and deployment in garment production environments."
-images: []
-coverImage: ""
+images:
+  - "/images/projects/smart-sewing-machine-monitoring-1.jpg"
+  - "/images/projects/smart-sewing-machine-monitoring-2.jpg"
+coverImage: "/images/projects/smart-sewing-machine-monitoring-1.jpg"
 githubRepo: ""
 demoUrl: ""
 documentationUrl: ""
@@ -34,4 +36,4 @@ order: 1
 draft: false
 ---
 
-Currently in testing in garment production environments. Project images pending upload — see `public/images/projects/`.
+Currently in testing in garment production environments, mounted directly on a JUKI lockstitch machine. The embedded display shows live per-operator stitching statistics (target vs. completed units, standard vs. actual stitching time) for real-time feedback at the machine level.

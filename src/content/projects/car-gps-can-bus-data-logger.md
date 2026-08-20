@@ -22,8 +22,10 @@ algorithms:
 architectureNotes: "ESP32 node reads engine diagnostics over CAN via an MCP2515 controller, tags data with GNSS position, and logs to external Flash/SD for offline resilience; live telemetry and alerts (geofence, fault codes) are pushed over GSM/GPRS, with interrupt-driven wakeup keeping standby power low."
 results: "[ADD MEASURABLE RESULTS once available — e.g. fleet deployment size, standby battery life, telemetry latency.]"
 myContribution: "Designed and developed the full system as Embedded Systems Engineer: CAN/GNSS/GSM integration, automotive power-supply design, and firmware architecture."
-images: []
-coverImage: ""
+images:
+  - "/images/projects/car-gps-can-bus-data-logger-1.jpeg"
+  - "/images/projects/car-gps-can-bus-data-logger-2.jpeg"
+coverImage: "/images/projects/car-gps-can-bus-data-logger-1.jpeg"
 githubRepo: ""
 demoUrl: ""
 documentationUrl: ""

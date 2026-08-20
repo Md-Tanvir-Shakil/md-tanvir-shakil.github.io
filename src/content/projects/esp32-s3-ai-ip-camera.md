@@ -20,8 +20,10 @@ algorithms:
 architectureNotes: "Camera captures locally via OV2640, runs on-device human detection/tracking using ESP-WHO on the ESP32-S3's AI-accelerated core, streams live video over Wi-Fi (HTTP/RTSP) to a web dashboard, and can drive pan-tilt servos to keep the subject centered — all without a cloud round-trip for inference."
 results: "[ADD MEASURABLE RESULTS once available — e.g. detection latency, frame rate, tracking accuracy.]"
 myContribution: "Designed and developed the system as Hardware & RTOS Architect, including firmware architecture on ESP-IDF/FreeRTOS."
-images: []
-coverImage: ""
+images:
+  - "/images/projects/esp32-s3-ai-ip-camera-1.png"
+  - "/images/projects/esp32-s3-ai-ip-camera-2.png"
+coverImage: "/images/projects/esp32-s3-ai-ip-camera-1.png"
 githubRepo: ""
 demoUrl: ""
 documentationUrl: ""

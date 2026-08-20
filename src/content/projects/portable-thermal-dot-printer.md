@@ -18,8 +18,10 @@ algorithms:
 architectureNotes: "Host device (phone/POS terminal) sends ESC/POS-formatted print jobs over BLE/SPP or USB/UART; onboard firmware buffers, renders, and drives the thermal print head while monitoring paper presence, head temperature, and battery level."
 results: "In market. [ADD MEASURABLE RESULTS once available — e.g. print speed, battery life per charge.]"
 myContribution: "Designed and developed the system as Hardware & RTOS Architect, including firmware for print buffering, font management, and status monitoring."
-images: []
-coverImage: ""
+images:
+  - "/images/projects/portable-thermal-dot-printer-1.png"
+  - "/images/projects/portable-thermal-dot-printer-2.png"
+coverImage: "/images/projects/portable-thermal-dot-printer-1.png"
 githubRepo: ""
 demoUrl: ""
 documentationUrl: ""
