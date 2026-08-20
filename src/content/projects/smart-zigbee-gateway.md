@@ -14,7 +14,7 @@ software:
 algorithms: []
 architectureNotes: "ESP32-C6 runs the Zigbee (802.15.4) radio stack as coordinator for the mesh network, communicating over an inter-chip serial link to the ESP32-S3, which owns Wi-Fi connectivity and bridges Zigbee device data to the cloud/local network."
 results: ""
-myContribution: "Architected and led development as Senior Solution Architect (IoT, IIoT) at MBM Group: system architecture, dual-chip PCB design, and inter-chip bridging firmware."
+myContribution: "Architected and led development: system architecture, dual-chip PCB design, and inter-chip bridging firmware."
 images:
   - "/images/projects/smart-zigbee-gateway-1.jpeg"
   - "/images/projects/smart-zigbee-gateway-2.jpeg"
