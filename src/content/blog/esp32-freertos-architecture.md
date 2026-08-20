@@ -5,10 +5,10 @@ author: "MD. Tanvir Shakil"
 summary: "Example article — replace with real technical writing. Notes on splitting sensing, networking, and power management into separate FreeRTOS tasks with sane priorities and queue-based communication."
 tags: ["ESP32", "FreeRTOS", "Firmware"]
 category: "Embedded Systems"
-relatedProjects: ["esp32-industrial-machine-monitor"]
+relatedProjects: []
 relatedResearch: []
 featured: false
-draft: false
+draft: true
 ---
 
 This is example/template content shipped with the portfolio. Replace it with your own

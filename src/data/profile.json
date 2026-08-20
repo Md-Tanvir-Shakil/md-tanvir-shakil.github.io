@@ -1,11 +1,11 @@
 {
   "name": "MD. Tanvir Shakil",
-  "title": "Embedded Systems Engineer | IoT / IIoT | AIoT | Edge AI | PCB & Firmware",
-  "tagline": "I design and build embedded hardware, firmware, and IoT systems — and I'm working toward graduate research in embedded AI and intelligent industrial systems.",
-  "summary": "[ADD 2-3 SENTENCE PROFESSIONAL SUMMARY — e.g. what you build, which layers of the stack you own (hardware/firmware/cloud), and the problem domain you focus on.]",
-  "location": "[ADD CITY, COUNTRY]",
-  "email": "[ADD EMAIL]",
-  "phone": "",
+  "title": "Electronics & Embedded Systems Engineer | IoT / IIoT / AIoT | Embedded AI",
+  "tagline": "I design and build embedded hardware, firmware, and AIoT systems — from multi-layer PCBs to edge intelligence — and I'm working toward graduate research in embedded AI for e-mobility and intelligent power electronics.",
+  "summary": "Electronics Engineer with expertise in multi-layer PCB design, embedded systems, IoT/AIoT architectures, and embedded AI. Proven experience leading end-to-end hardware development, from system architecture and component selection to prototyping, validation, and deployment. Focused on advancing e-mobility, EV charging infrastructure, and smart power-electronic solutions through robust design, intelligent control, and high-reliability engineering practices.",
+  "location": "Nilphamari, Bangladesh",
+  "email": "mytanvir50@gmail.com",
+  "phone": "+8801749868539",
   "availableFor": [
     "PhD opportunities",
     "M.Sc. / graduate research",
@@ -18,12 +18,12 @@
   "profileImage": "/images/profile-placeholder.svg",
   "social": {
     "github": "https://github.com/Md-Tanvir-Shakil",
-    "linkedin": "[ADD LINKEDIN URL, or leave empty string to hide]",
+    "linkedin": "https://www.linkedin.com/in/mdtanvirshakil/",
     "googleScholar": "",
     "orcid": "",
     "researchGate": "",
-    "email": "[ADD EMAIL]"
+    "email": "mytanvir50@gmail.com"
   },
-  "researchFocusSummary": "[ADD 1-2 SENTENCES ON CURRENT RESEARCH INTEREST — e.g. Edge AI for industrial condition monitoring on resource-constrained microcontrollers.]",
-  "currentFocus": "[ADD WHAT YOU ARE CURRENTLY WORKING ON]"
+  "researchFocusSummary": "Embedded AI and AIoT for resource-constrained systems — spanning edge intelligence for industrial power monitoring, TinyML for low-power wearable sensing, and embedded control for e-mobility and smart power electronics.",
+  "currentFocus": "Developing AI-driven embedded solutions for smart home electronics and intelligent automation at THT-Space Electrical Company Ltd. — designing AIoT-enabled devices with Wi-Fi/BLE/MQTT connectivity for real-time monitoring and control."
 }

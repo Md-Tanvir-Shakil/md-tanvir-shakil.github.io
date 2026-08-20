@@ -274,6 +274,7 @@ collections:
     extension: md
     fields:
       - { label: "Company", name: "company", widget: "string" }
+      - { label: "Company URL", name: "companyUrl", widget: "string", required: false }
       - { label: "Position", name: "position", widget: "string" }
       - { label: "Location", name: "location", widget: "string", required: false }
       - { label: "Start Date", name: "startDate", widget: "string", hint: "YYYY-MM", required: false }

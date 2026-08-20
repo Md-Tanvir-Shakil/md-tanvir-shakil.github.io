@@ -1,28 +1,52 @@
 {
   "groups": [
     {
-      "category": "Embedded Systems",
-      "items": ["ESP32", "STM32", "CH32", "Embedded C", "Embedded C++", "ESP-IDF", "FreeRTOS", "Bare-metal firmware", "Bootloaders"]
+      "category": "Programming Languages",
+      "items": ["C", "C++", "Embedded C", "Python"]
     },
     {
-      "category": "Hardware",
-      "items": ["PCB Design", "KiCad", "Power Electronics", "Sensor Interfacing", "Hardware Debugging (oscilloscope/logic analyzer)", "Signal Integrity Basics"]
+      "category": "Microcontrollers & Onboard Computers",
+      "items": ["STM32", "ESP32", "AVR", "MSP430", "Raspberry Pi", "Jetson Nano"]
     },
     {
-      "category": "Communication Protocols",
-      "items": ["MQTT", "BLE", "Wi-Fi", "Zigbee", "UART", "I2C", "SPI", "RS-485", "Modbus"]
+      "category": "PCB & Hardware Design",
+      "items": ["Altium Designer", "EasyEDA", "Multi-layer PCB Design", "Schematic Capture", "Component Selection", "Analog & Mixed-Signal Design", "Power Electronics & Conversion", "Motor Control & Drives", "EMC/EMI Design & Testing", "Thermal Management", "Battery Management Systems"]
     },
     {
-      "category": "AI / Computer Vision",
-      "items": ["Edge AI", "TinyML", "OpenCV", "Computer Vision", "Anomaly Detection", "Machine Learning Fundamentals"]
+      "category": "Communication & Connectivity",
+      "items": ["MQTT", "CoAP", "BLE", "Wi-Fi", "I2C", "RS485 (Modbus RTU)", "CAN Bus", "LoRa", "GSM/GPRS", "REST API"]
     },
     {
-      "category": "IoT / IIoT",
-      "items": ["IoT System Architecture", "Industrial IoT", "Device Management", "Edge Computing", "MQTT Broker Design"]
+      "category": "Embedded Systems & RTOS",
+      "items": ["Embedded Systems", "IIoT / IoT / AIoT", "RTOS (FreeRTOS)", "TinyML", "Edge Computing", "Edge AI / Computer Vision"]
     },
     {
-      "category": "Software & Tools",
-      "items": ["Python", "C", "C++", "Linux", "Git", "Docker", "[ADD MORE AS RELEVANT]"]
+      "category": "Data Science & Machine Learning",
+      "items": ["NumPy", "Pandas", "Scikit-learn", "TensorFlow", "Keras", "Matplotlib"]
+    },
+    {
+      "category": "Cloud & Platforms",
+      "items": ["AWS IoT Core", "Google Cloud IoT", "Firebase"]
+    },
+    {
+      "category": "DevOps & Version Control",
+      "items": ["Git", "GitHub"]
+    },
+    {
+      "category": "Mathematical & Statistical Tools",
+      "items": ["MATLAB", "SciPy", "R", "SPICE Simulation"]
+    },
+    {
+      "category": "Test, Measurement & Compliance",
+      "items": ["Test & Measurement", "Safety & Compliance Standards", "Project Management"]
+    },
+    {
+      "category": "Web Technologies",
+      "items": ["HTML", "JavaScript"]
+    },
+    {
+      "category": "Research Skills",
+      "items": ["System Design", "Experimental Setup", "Simulation", "Data Analysis", "Technical Writing", "Literature Review"]
     }
   ]
 }

@@ -1,6 +1,6 @@
 {
-  "siteTitle": "MD. Tanvir Shakil — Embedded Systems & IoT/AIoT Engineer",
-  "siteDescription": "Portfolio and research profile of MD. Tanvir Shakil, an Embedded Systems / IoT / IIoT / AIoT / Edge AI engineer building hardware, firmware, and intelligent industrial systems.",
+  "siteTitle": "MD. Tanvir Shakil — Electronics & Embedded Systems Engineer",
+  "siteDescription": "Portfolio and research profile of MD. Tanvir Shakil, an Electronics / Embedded Systems / IoT / IIoT / AIoT engineer working across PCB design, firmware, embedded AI, and intelligent power electronics.",
   "siteUrl": "https://Md-Tanvir-Shakil.github.io",
   "githubUsername": "Md-Tanvir-Shakil",
   "twitterHandle": "",
@@ -14,7 +14,8 @@
   },
   "seo": {
     "keywords": [
-      "Embedded Systems Engineer",
+      "Electronics Engineer Bangladesh",
+      "Embedded Systems Engineer Bangladesh",
       "IoT Engineer Bangladesh",
       "Embedded AI Engineer",
       "AIoT Engineer",
@@ -22,7 +23,9 @@
       "Embedded Systems Researcher",
       "IIoT",
       "Firmware Engineer",
-      "PCB Design"
+      "PCB Design Engineer",
+      "TinyML",
+      "e-mobility"
     ]
   }
 }

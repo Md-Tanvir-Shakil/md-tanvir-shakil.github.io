@@ -172,6 +172,7 @@ const experience = defineCollection({
   loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/experience" }),
   schema: z.object({
     company: z.string(),
+    companyUrl: z.string().optional(),
     position: z.string(),
     location: z.string().optional(),
     ...dateRange,
