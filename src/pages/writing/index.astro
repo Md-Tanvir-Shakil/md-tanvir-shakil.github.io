@@ -20,8 +20,7 @@ const categories = Array.from(new Set(posts.map((p) => p.data.category).filter(B
 
     {posts.length === 0 ? (
       <p class="text-[var(--color-text-muted)]">
-        [ADD ARTICLES via the CMS — Blog collection. An example post ships with this template at
-        <code>src/content/blog/</code>.]
+        No articles published yet — check back soon.
       </p>
     ) : (
       <div data-filter-root class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">

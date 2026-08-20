@@ -16,7 +16,7 @@ software:
 algorithms:
   - "Deep-sleep + event-driven wake-up duty cycling for power optimization"
 architectureNotes: "Ultrasonic level sensor is read over RS485 (Modbus RTU) for EMI-resilient local acquisition, with an SX127x LoRa radio providing multi-kilometer low-power backhaul to a base station; the node spends most of its time in deep sleep, waking on schedule or event to conserve battery."
-results: "[ADD MEASURABLE RESULTS once available — e.g. achieved LoRa range, battery life in the field.]"
+results: ""
 myContribution: "Led development as Hardware & System Architect: firmware, RS485/LoRa integration, power-optimization strategy, and PCB design engineered for high-EMI environments."
 images:
   - "/images/projects/rs485-lora-water-level-monitoring-1.png"

@@ -11,8 +11,7 @@ const experience = (await getCollection("experience")).sort((a, b) => a.data.ord
   <Section eyebrow="Experience" title="Professional Experience" description="What I built, and the impact it had.">
     {experience.length === 0 ? (
       <p class="text-[var(--color-text-muted)]">
-        [ADD EXPERIENCE via the CMS — Experience collection, or edit files in
-        <code>src/content/experience/</code>.]
+        No experience entries published yet — check back soon.
       </p>
     ) : (
       <ExperienceTimeline items={experience} />

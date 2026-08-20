@@ -2,7 +2,7 @@
 title: "Smart Delivery Box Video Doorbell — ESP32-P4 + ESP32-C6 (UK Project)"
 type: engineering
 summary: "Camera-enabled smart delivery box / video doorbell system built on a modular multi-board PCB stack, combining an ESP32-P4 vision/application module with an ESP32-C6 connectivity module."
-problemStatement: "[ADD — the specific UK-market delivery/security use case this smart delivery box addresses.]"
+problemStatement: ""
 approach: "Designed a modular multi-board PCB stack (branded DeliveryBoxx Ltd, Vs. 1.0) for a smart delivery box with an integrated video doorbell. An ESP32-P4 module handles the camera/vision workload, an ESP32-C6 module provides wireless connectivity, and a separate board carries the camera (FPC connector), an Ethernet jack, and status indicators, with a further board for display/interface."
 hardware:
   - "ESP32-P4-Module"
@@ -13,7 +13,7 @@ hardware:
 software: []
 algorithms: []
 architectureNotes: "Camera and vision processing run on the ESP32-P4 board; the ESP32-C6 module provides Wi-Fi/wireless connectivity for remote notification and video access; a separate interconnected board carries the camera FPC, Ethernet jack, and auxiliary connectors, split across a three-board modular stack."
-results: "[ADD MEASURABLE RESULTS once available.]"
+results: ""
 myContribution: "Led hardware architecture as Senior Solution Architect (IoT, IIoT) at MBM Group: multi-board PCB design and ESP32-P4/ESP32-C6 system partitioning."
 images:
   - "/images/projects/smart-delivery-box-video-doorbell-1.jpeg"

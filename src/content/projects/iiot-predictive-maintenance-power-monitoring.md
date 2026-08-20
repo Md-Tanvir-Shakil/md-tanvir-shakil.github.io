@@ -15,7 +15,7 @@ algorithms:
   - "Active power factor correction (PFC)"
   - "TinyML-based predictive fault detection"
 architectureNotes: "Power-line sensing front-end feeds FFT-based signal analysis and TinyML inference at the edge for predictive fault detection and PFC control, with results and control commands relayed over MQTT and custom APIs for remote monitoring."
-results: "[ADD MEASURABLE RESULTS once available — e.g. fault-detection lead time, power-factor improvement achieved.]"
+results: ""
 myContribution: "Engineered the system at FronTech Ltd. as Sr. Executive (R&D and Production): real-time power monitoring, PFC methods, predictive fault detection, and FFT/TinyML/MQTT integration with custom APIs."
 images: []
 coverImage: ""

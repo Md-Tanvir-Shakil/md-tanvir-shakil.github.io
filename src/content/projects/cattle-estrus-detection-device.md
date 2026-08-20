@@ -16,7 +16,7 @@ algorithms:
   - "TinyML on-device inference"
   - "Sensor fusion (IMU + temperature) for behavioral pattern recognition"
 architectureNotes: "Wearable sensor node performs on-device TinyML inference over fused IMU and temperature data, then reports predictions over Wi-Fi/MQTT to a cloud backend for continuous farm-level monitoring."
-results: "Deployed to market with field validation on livestock farms. [ADD QUANTITATIVE RESULTS — e.g. detection accuracy, battery life, number of farms/animals monitored — once available.]"
+results: "Deployed to market with field validation on livestock farms."
 myContribution: "Led end-to-end development as Hardware & System Architect: hardware design, firmware development, AI model deployment, and field validation with livestock farms. Also delivered PCB design, firmware, and system design for the related BAU-RIC / Adorsho PraniSheba research and engineering work."
 images:
   - "/images/projects/cattle-estrus-detection-device-1.png"

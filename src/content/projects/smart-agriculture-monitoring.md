@@ -20,7 +20,7 @@ algorithms:
   - "RTC-based scheduling for irrigation/fertilizer control"
   - "Fail-safe remote configuration handling"
 architectureNotes: "Field sensor nodes acquire environmental/soil data over RS485 (Modbus RTU), with RTC-scheduled actuation for irrigation and fertilizer dosing; data and alerts fan out over GSM (SMS), Wi-Fi (cloud dashboard), and LoRa (long-range low-power backhaul) depending on site connectivity."
-results: "[ADD MEASURABLE RESULTS once field testing concludes — e.g. LoRa range achieved, irrigation water savings.]"
+results: ""
 myContribution: "Led development as Hardware & System Architect: firmware, RS485/GSM/Wi-Fi/LoRa integration, and PCB design for harsh outdoor deployment."
 images:
   - "/images/projects/smart-agriculture-monitoring-1.png"

@@ -2,7 +2,7 @@
 title: "Engineering Model CubeSat & Prototype Solid Propulsion System"
 type: research
 summary: "Development of an engineering model CubeSat and a prototype solid propulsion system for space research, including PCB design and firmware."
-problemStatement: "[ADD — specific research objective the engineering model and propulsion prototype were built to validate.]"
+problemStatement: ""
 approach: "Development of an engineering model CubeSat and prototype solid propulsion system for space research, including PCB design and firmware development."
 hardware:
   - "Engineering model CubeSat"
@@ -10,8 +10,8 @@ hardware:
   - "Onboard PCB (custom)"
 software: []
 algorithms: []
-architectureNotes: "[ADD — engineering model subsystem architecture and propulsion system integration details.]"
-results: "[ADD MEASURABLE RESULTS once available — e.g. propulsion test outcomes.]"
+architectureNotes: ""
+results: ""
 myContribution: "Contributed PCB design and firmware as Junior Research Fellow at SPARRSO."
 images: []
 coverImage: ""

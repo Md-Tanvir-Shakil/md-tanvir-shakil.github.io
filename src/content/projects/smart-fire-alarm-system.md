@@ -19,7 +19,7 @@ algorithms:
   - "Sensor fusion across temperature/flame/smoke"
   - "Anomaly detection to reduce false alarms"
 architectureNotes: "Sensor node fuses temperature, flame, and smoke readings on-device to apply anomaly-detection logic before triggering alerts, then dispatches SMS via GSM and push notifications via cloud/MQTT to a mobile app."
-results: "In market. [ADD QUANTITATIVE RESULTS — e.g. false-alarm reduction rate, alert latency — once available.]"
+results: "In market."
 myContribution: "Led full-cycle development as Hardware & System Architect: hardware architecture, PCB design, firmware development, AI deployment, and field testing."
 images:
   - "/images/projects/smart-fire-alarm-system-1.png"

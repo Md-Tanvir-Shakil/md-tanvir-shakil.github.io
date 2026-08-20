@@ -15,7 +15,7 @@ algorithms:
   - "Real-time stitching activity and production-count capture"
   - "Efficiency KPI calculation (target vs. completed units)"
 architectureNotes: "Machine-level edge processing unit at each sewing station computes and displays KPIs locally, then reports over MQTT/Wi-Fi to a centralized dashboard for monitoring across multiple machines."
-results: "[ADD MEASURABLE RESULTS once available from field testing — e.g. efficiency gains observed, number of machines deployed.]"
+results: ""
 myContribution: "Led end-to-end development as Hardware & System Architect: hardware design, firmware development, embedded UI design, system integration, and deployment in garment production environments."
 images:
   - "/images/projects/smart-sewing-machine-monitoring-1.jpg"

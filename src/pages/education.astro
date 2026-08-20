@@ -11,8 +11,7 @@ const education = (await getCollection("education")).sort((a, b) => a.data.order
   <Section eyebrow="Education" title="Academic Background">
     {education.length === 0 ? (
       <p class="text-[var(--color-text-muted)]">
-        [ADD EDUCATION via the CMS — Education collection, or edit files in
-        <code>src/content/education/</code>.]
+        No education entries published yet — check back soon.
       </p>
     ) : (
       <div class="space-y-6">

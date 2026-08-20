@@ -13,7 +13,7 @@ algorithms:
   - "1:N fingerprint matching"
   - "Global Fingerprint Sync across devices"
 architectureNotes: "Fingerprint enrollment is synchronized across all devices via Global Fingerprint Sync, so a match on any single device performs 1:N matching against the full synced template set, coordinated through a custom API layer."
-results: "[ADD MEASURABLE RESULTS once available — e.g. matching speed, false-acceptance/rejection rate.]"
+results: ""
 myContribution: "Designed and developed the system at Neways International as IoT Engineer: home automation platform, fingerprint authentication firmware in MicroPython, and custom API integration."
 images: []
 coverImage: ""
