@@ -1,0 +1,53 @@
+<svg viewBox="0 0 800 440" xmlns="http://www.w3.org/2000/svg" font-family="'Segoe UI',Helvetica,Arial,sans-serif">
+  <style>
+    .bg{fill:#ffffff}
+    .title{fill:#14181f;font-size:19px;font-weight:700}
+    .sub{fill:#565e6c;font-size:12.5px}
+    .box{fill:#e5f0f1;stroke:#1f5f6b;stroke-width:1.5}
+    .lbl{fill:#14181f;font-size:13px;font-weight:600}
+    .note{fill:#565e6c;font-size:11.5px}
+    .arrow{stroke:#c0392b;stroke-width:2;fill:none;marker-end:url(#ah)}
+    .arrow2{stroke:#1f5f6b;stroke-width:2;fill:none;marker-end:url(#ah2)}
+  </style>
+  <defs>
+    <marker id="ah" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#c0392b"/></marker>
+    <marker id="ah2" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#1f5f6b"/></marker>
+  </defs>
+  <rect class="bg" width="800" height="440"/>
+  <text class="title" x="20" y="30">EMI Coupling Paths: Source → Path → Victim</text>
+  <text class="sub" x="20" y="48">Every EMI problem has all three elements — remove any one and the problem disappears</text>
+
+  <rect class="box" x="40" y="100" width="180" height="80" rx="6"/>
+  <text class="lbl" x="130" y="135" text-anchor="middle">Noise Source</text>
+  <text class="note" x="130" y="153" text-anchor="middle">switching regulator,</text>
+  <text class="note" x="130" y="167" text-anchor="middle">MCU clock, motor drive</text>
+
+  <rect class="box" x="310" y="60" width="180" height="70" rx="6"/>
+  <text class="lbl" x="400" y="90" text-anchor="middle">Conducted Path</text>
+  <text class="note" x="400" y="108" text-anchor="middle">shared traces, power rails,</text>
+  <text class="note" x="400" y="122" text-anchor="middle">ground impedance</text>
+
+  <rect class="box" x="310" y="150" width="180" height="70" rx="6"/>
+  <text class="lbl" x="400" y="180" text-anchor="middle">Radiated Path</text>
+  <text class="note" x="400" y="198" text-anchor="middle">loop antennas formed by</text>
+  <text class="note" x="400" y="212" text-anchor="middle">current + return loops</text>
+
+  <rect class="box" x="580" y="100" width="180" height="80" rx="6"/>
+  <text class="lbl" x="670" y="135" text-anchor="middle">Victim</text>
+  <text class="note" x="670" y="153" text-anchor="middle">RF receiver, ADC,</text>
+  <text class="note" x="670" y="167" text-anchor="middle">sensitive analog front end</text>
+
+  <path class="arrow" d="M220 130 Q 260 100 310 95"/>
+  <path class="arrow" d="M220 150 Q 260 175 310 185"/>
+  <path class="arrow" d="M490 95 Q 540 105 580 130"/>
+  <path class="arrow" d="M490 185 Q 540 165 580 150"/>
+
+  <!-- mitigation strip -->
+  <rect x="40" y="260" width="720" height="150" fill="#f7f8fa" stroke="#e2e5e9"/>
+  <text class="lbl" x="60" y="286">Break the chain at any point:</text>
+  <text class="note" x="60" y="310">• Source: slow switching edges, spread-spectrum clocking, snubbers, ferrite beads at the source</text>
+  <text class="note" x="60" y="330">• Conducted path: solid ground plane, short return paths, decoupling caps placed at the pin, star grounding for analog</text>
+  <text class="note" x="60" y="350">• Radiated path: minimize loop area, keep high-current loops away from cables and antennas, shield if necessary</text>
+  <text class="note" x="60" y="370">• Victim: filtering at the receiver input, physical separation, differential signaling for noise immunity</text>
+  <text class="note" x="60" y="390">Fixing the path is usually cheaper and more reliable than trying to harden the victim after the fact.</text>
+</svg>

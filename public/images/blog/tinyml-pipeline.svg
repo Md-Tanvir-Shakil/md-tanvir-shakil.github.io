@@ -1,0 +1,70 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" font-family="'Segoe UI',Helvetica,Arial,sans-serif">
+  <style>
+    .bg{fill:#ffffff}
+    .title{fill:#14181f;font-size:19px;font-weight:700}
+    .sub{fill:#565e6c;font-size:12.5px}
+    .box{fill:#e5f0f1;stroke:#1f5f6b;stroke-width:1.5}
+    .lbl{fill:#14181f;font-size:13px;font-weight:600}
+    .note{fill:#565e6c;font-size:11px}
+    .arrow{stroke:#1f5f6b;stroke-width:2;fill:none;marker-end:url(#a4)}
+  </style>
+  <defs>
+    <marker id="a4" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#1f5f6b"/></marker>
+  </defs>
+  <rect class="bg" width="800" height="400"/>
+  <text class="title" x="20" y="30">TinyML Pipeline: Trained Model to Real-Time Inference on ESP32-S3</text>
+  <text class="sub" x="20" y="48">From cloud training to on-device edge inference</text>
+
+  <rect class="box" x="30" y="100" width="130" height="80"/>
+  <text class="lbl" x="95" y="130" text-anchor="middle">Collect &amp;</text>
+  <text class="lbl" x="95" y="148" text-anchor="middle">Label Data</text>
+  <text class="note" x="95" y="166" text-anchor="middle">sensor logs / images</text>
+
+  <rect class="box" x="195" y="100" width="130" height="80"/>
+  <text class="lbl" x="260" y="130" text-anchor="middle">Train Model</text>
+  <text class="note" x="260" y="150" text-anchor="middle">TensorFlow /</text>
+  <text class="note" x="260" y="164" text-anchor="middle">Keras (cloud/PC)</text>
+
+  <rect class="box" x="360" y="100" width="130" height="80"/>
+  <text class="lbl" x="425" y="130" text-anchor="middle">Quantize</text>
+  <text class="note" x="425" y="150" text-anchor="middle">float32 → int8</text>
+  <text class="note" x="425" y="164" text-anchor="middle">(post-training quant.)</text>
+
+  <rect class="box" x="525" y="100" width="130" height="80"/>
+  <text class="lbl" x="590" y="122" text-anchor="middle">Convert</text>
+  <text class="note" x="590" y="142" text-anchor="middle">TFLite Micro</text>
+  <text class="note" x="590" y="156" text-anchor="middle">flatbuffer (.tflite)</text>
+  <text class="note" x="590" y="170" text-anchor="middle">→ C byte array</text>
+
+  <rect class="box" x="690" y="100" width="90" height="80"/>
+  <text class="lbl" x="735" y="130" text-anchor="middle">Flash to</text>
+  <text class="lbl" x="735" y="148" text-anchor="middle">ESP32-S3</text>
+
+  <path class="arrow" d="M160 140 H195"/>
+  <path class="arrow" d="M325 140 H360"/>
+  <path class="arrow" d="M490 140 H525"/>
+  <path class="arrow" d="M655 140 H690"/>
+
+  <!-- runtime loop on device -->
+  <rect x="30" y="240" width="750" height="120" fill="#f7f8fa" stroke="#e2e5e9"/>
+  <text class="lbl" x="50" y="265">On-device inference loop (ESP32-S3, SIMD-accelerated kernels):</text>
+
+  <rect class="box" x="50" y="285" width="140" height="50"/>
+  <text class="note" x="120" y="315" text-anchor="middle">Sensor / camera sample</text>
+
+  <rect class="box" x="230" y="285" width="140" height="50"/>
+  <text class="note" x="300" y="315" text-anchor="middle">Preprocess (window/FFT)</text>
+
+  <rect class="box" x="410" y="285" width="140" height="50"/>
+  <text class="note" x="480" y="315" text-anchor="middle">TFLite Micro interpreter</text>
+
+  <rect class="box" x="590" y="285" width="140" height="50"/>
+  <text class="note" x="660" y="308" text-anchor="middle">Action / alert /</text>
+  <text class="note" x="660" y="322" text-anchor="middle">MQTT publish</text>
+
+  <path class="arrow" d="M190 310 H230"/>
+  <path class="arrow" d="M370 310 H410"/>
+  <path class="arrow" d="M550 310 H590"/>
+
+  <text class="note" x="50" y="390">Budget model size against SRAM/PSRAM headroom — arena size, tensor count, and inference latency all trade off against battery life.</text>
+</svg>

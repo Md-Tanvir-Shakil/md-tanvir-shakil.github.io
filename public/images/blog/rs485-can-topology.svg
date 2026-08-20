@@ -1,0 +1,59 @@
+<svg viewBox="0 0 800 460" xmlns="http://www.w3.org/2000/svg" font-family="'Segoe UI',Helvetica,Arial,sans-serif">
+  <style>
+    .bg{fill:#ffffff}
+    .title{fill:#14181f;font-size:19px;font-weight:700}
+    .sub{fill:#565e6c;font-size:12.5px}
+    .lbl{fill:#14181f;font-size:13px;font-weight:600}
+    .note{fill:#565e6c;font-size:11.5px}
+    .bus{stroke:#1f5f6b;stroke-width:3;fill:none}
+    .node{fill:#e5f0f1;stroke:#1f5f6b;stroke-width:1.5}
+    .term{stroke:#c0392b;stroke-width:3}
+  </style>
+  <rect class="bg" width="800" height="460"/>
+  <text class="title" x="20" y="30">Multidrop Field Bus Topology: RS-485 and CAN</text>
+  <text class="sub" x="20" y="48">Both are differential, terminated, daisy-chained buses — never a star</text>
+
+  <!-- RS485 -->
+  <text class="lbl" x="20" y="100">RS-485 (2-wire, half-duplex)</text>
+  <line class="bus" x1="60" y1="140" x2="740" y2="140"/>
+  <line class="term" x1="60" y1="120" x2="60" y2="160"/>
+  <line class="term" x1="740" y1="120" x2="740" y2="160"/>
+  <text class="note" x="60" y="175" text-anchor="middle">120Ω</text>
+  <text class="note" x="740" y="175" text-anchor="middle">120Ω</text>
+
+  <g>
+    <rect class="node" x="130" y="105" width="90" height="34"/>
+    <text class="note" x="175" y="127" text-anchor="middle">Master / PLC</text>
+    <rect class="node" x="300" y="105" width="90" height="34"/>
+    <text class="note" x="345" y="127" text-anchor="middle">Node (RTU)</text>
+    <rect class="node" x="460" y="105" width="90" height="34"/>
+    <text class="note" x="505" y="127" text-anchor="middle">Node (RTU)</text>
+    <rect class="node" x="620" y="105" width="90" height="34"/>
+    <text class="note" x="665" y="127" text-anchor="middle">Node (RTU)</text>
+  </g>
+  <text class="note" x="400" y="200" text-anchor="middle">Short stubs only (&lt; 0.3 m) — long stubs cause reflections at high baud rates</text>
+
+  <!-- CAN -->
+  <text class="lbl" x="20" y="260">CAN Bus (2-wire, differential, arbitration-based)</text>
+  <line class="bus" x1="60" y1="300" x2="740" y2="300"/>
+  <line class="term" x1="60" y1="280" x2="60" y2="320"/>
+  <line class="term" x1="740" y1="280" x2="740" y2="320"/>
+  <text class="note" x="60" y="335" text-anchor="middle">120Ω</text>
+  <text class="note" x="740" y="335" text-anchor="middle">120Ω</text>
+
+  <g>
+    <rect class="node" x="130" y="265" width="90" height="34"/>
+    <text class="note" x="175" y="287" text-anchor="middle">ECU 1</text>
+    <rect class="node" x="300" y="265" width="90" height="34"/>
+    <text class="note" x="345" y="287" text-anchor="middle">ECU 2</text>
+    <rect class="node" x="460" y="265" width="90" height="34"/>
+    <text class="note" x="505" y="287" text-anchor="middle">Sensor Node</text>
+    <rect class="node" x="620" y="265" width="90" height="34"/>
+    <text class="note" x="665" y="287" text-anchor="middle">Gateway</text>
+  </g>
+
+  <rect x="40" y="370" width="720" height="70" fill="#f7f8fa" stroke="#e2e5e9"/>
+  <text class="note" x="60" y="392">RS-485: simple, cheap, addressable via software protocol (e.g. Modbus RTU) — one master polls many slaves.</text>
+  <text class="note" x="60" y="410">CAN: built-in arbitration and error handling in silicon — any node can transmit, lowest ID wins bus contention, ideal where multiple controllers must coexist.</text>
+  <text class="note" x="60" y="428">Both require termination resistors at exactly the two physical bus ends — not at every node.</text>
+</svg>

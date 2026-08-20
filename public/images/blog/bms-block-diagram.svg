@@ -1,0 +1,74 @@
+<svg viewBox="0 0 800 460" xmlns="http://www.w3.org/2000/svg" font-family="'Segoe UI',Helvetica,Arial,sans-serif">
+  <style>
+    .bg{fill:#ffffff}
+    .title{fill:#14181f;font-size:19px;font-weight:700}
+    .sub{fill:#565e6c;font-size:12.5px}
+    .box{fill:#e5f0f1;stroke:#1f5f6b;stroke-width:1.5}
+    .cell{fill:#dfe3e8;stroke:#14181f;stroke-width:1.5}
+    .lbl{fill:#14181f;font-size:12.5px;font-weight:600}
+    .note{fill:#565e6c;font-size:11px}
+    .wire{stroke:#14181f;stroke-width:1.5;fill:none}
+  </style>
+  <rect class="bg" width="800" height="460"/>
+  <text class="title" x="20" y="30">Li-ion Battery Management System — Functional Block Diagram</text>
+  <text class="sub" x="20" y="48">4S pack, host-supervised protection with active cell balancing</text>
+
+  <!-- cell stack -->
+  <g transform="translate(50,90)">
+    <rect class="cell" x="0" y="0" width="50" height="60"/>
+    <text class="note" x="25" y="34" text-anchor="middle">Cell 4</text>
+    <rect class="cell" x="0" y="65" width="50" height="60"/>
+    <text class="note" x="25" y="99" text-anchor="middle">Cell 3</text>
+    <rect class="cell" x="0" y="130" width="50" height="60"/>
+    <text class="note" x="25" y="164" text-anchor="middle">Cell 2</text>
+    <rect class="cell" x="0" y="195" width="50" height="60"/>
+    <text class="note" x="25" y="229" text-anchor="middle">Cell 1</text>
+    <text class="lbl" x="25" y="-10" text-anchor="middle">4S Pack</text>
+  </g>
+
+  <!-- balancing taps -->
+  <g stroke="#1f5f6b" stroke-width="1.5">
+    <line x1="100" y1="90" x2="150" y2="90"/>
+    <line x1="100" y1="155" x2="150" y2="155"/>
+    <line x1="100" y1="220" x2="150" y2="220"/>
+    <line x1="100" y1="285" x2="150" y2="285"/>
+    <line x1="100" y1="350" x2="150" y2="350"/>
+  </g>
+
+  <!-- AFE / protection IC -->
+  <rect class="box" x="150" y="70" width="170" height="300"/>
+  <text class="lbl" x="235" y="100" text-anchor="middle">Analog Front End</text>
+  <text class="lbl" x="235" y="118" text-anchor="middle">(BMS AFE / Protection IC)</text>
+  <text class="note" x="235" y="150" text-anchor="middle">• Per-cell voltage sense</text>
+  <text class="note" x="235" y="168" text-anchor="middle">• Passive/active cell balancing</text>
+  <text class="note" x="235" y="186" text-anchor="middle">• Overvoltage / undervoltage cutoff</text>
+  <text class="note" x="235" y="204" text-anchor="middle">• Overcurrent / short-circuit cutoff</text>
+  <text class="note" x="235" y="222" text-anchor="middle">• Coulomb counter (SOC)</text>
+  <text class="note" x="235" y="240" text-anchor="middle">• NTC thermistor input</text>
+
+  <!-- charge/discharge FETs -->
+  <rect class="box" x="360" y="90" width="120" height="50"/>
+  <text class="note" x="420" y="112" text-anchor="middle">Charge FET</text>
+  <text class="note" x="420" y="128" text-anchor="middle">(low-side)</text>
+  <rect class="box" x="360" y="160" width="120" height="50"/>
+  <text class="note" x="420" y="182" text-anchor="middle">Discharge FET</text>
+  <text class="note" x="420" y="198" text-anchor="middle">(low-side)</text>
+  <path class="wire" d="M320 100 H360"/>
+  <path class="wire" d="M320 240 H340 V185 H360"/>
+
+  <!-- pack terminals -->
+  <path class="wire" d="M480 115 H540"/>
+  <text class="lbl" x="560" y="120">PACK+ / Charger</text>
+  <path class="wire" d="M480 185 H540"/>
+  <text class="lbl" x="560" y="190">PACK- / Load</text>
+
+  <!-- host MCU -->
+  <rect class="box" x="360" y="250" width="180" height="90"/>
+  <text class="lbl" x="450" y="278" text-anchor="middle">Host MCU</text>
+  <text class="note" x="450" y="296" text-anchor="middle">SOC/SOH estimation,</text>
+  <text class="note" x="450" y="312" text-anchor="middle">fault logging, telemetry</text>
+  <text class="note" x="450" y="328" text-anchor="middle">(I2C / SMBus / UART)</text>
+  <path class="wire" d="M320 300 H360"/>
+
+  <text class="note" x="20" y="410">Design rule: the AFE enforces hardware-level cutoffs independently of firmware — the MCU adds SOC estimation and telemetry, never the last line of protection.</text>
+</svg>

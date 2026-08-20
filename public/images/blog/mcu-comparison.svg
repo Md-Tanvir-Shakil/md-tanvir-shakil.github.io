@@ -1,0 +1,90 @@
+<svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" font-family="'Segoe UI',Helvetica,Arial,sans-serif">
+  <style>
+    .bg{fill:#ffffff}
+    .grid{stroke:#e2e5e9;stroke-width:1}
+    .hdr{fill:#1f5f6b}
+    .hdrtxt{fill:#ffffff;font-size:15px;font-weight:600}
+    .lbl{fill:#14181f;font-size:13px;font-weight:600}
+    .cell{fill:#565e6c;font-size:13px}
+    .cellyes{fill:#1f5f6b;font-size:14px;font-weight:700}
+    .title{fill:#14181f;font-size:19px;font-weight:700}
+    .sub{fill:#565e6c;font-size:12.5px}
+    .zebra{fill:#f7f8fa}
+  </style>
+  <rect class="bg" x="0" y="0" width="800" height="420"/>
+  <text class="title" x="20" y="30">Espressif MCU Family: Feature Comparison</text>
+  <text class="sub" x="20" y="48">Choosing between ESP32, ESP32-S3, ESP32-C6, and ESP32-P4 for an AIoT design</text>
+
+  <!-- header row -->
+  <rect class="hdr" x="0" y="66" width="800" height="36"/>
+  <text class="hdrtxt" x="16" y="89">Feature</text>
+  <text class="hdrtxt" x="240" y="89" text-anchor="middle">ESP32</text>
+  <text class="hdrtxt" x="390" y="89" text-anchor="middle">ESP32-S3</text>
+  <text class="hdrtxt" x="540" y="89" text-anchor="middle">ESP32-C6</text>
+  <text class="hdrtxt" x="700" y="89" text-anchor="middle">ESP32-P4</text>
+
+  <!-- rows -->
+  <g>
+    <rect class="zebra" x="0" y="102" width="800" height="34"/>
+    <text class="lbl" x="16" y="123">CPU core(s)</text>
+    <text class="cell" x="240" y="123" text-anchor="middle">Xtensa LX6 (dual)</text>
+    <text class="cell" x="390" y="123" text-anchor="middle">Xtensa LX7 (dual)</text>
+    <text class="cell" x="540" y="123" text-anchor="middle">RISC-V (single)</text>
+    <text class="cell" x="700" y="123" text-anchor="middle">RISC-V (dual, HP)</text>
+  </g>
+  <g>
+    <text class="lbl" x="16" y="157">Wi-Fi</text>
+    <text class="cellyes" x="240" y="157" text-anchor="middle">802.11 b/g/n</text>
+    <text class="cellyes" x="390" y="157" text-anchor="middle">802.11 b/g/n</text>
+    <text class="cellyes" x="540" y="157" text-anchor="middle">Wi-Fi 6 (20MHz)</text>
+    <text class="cell" x="700" y="157" text-anchor="middle">— (via companion)</text>
+  </g>
+  <g>
+    <rect class="zebra" x="0" y="170" width="800" height="34"/>
+    <text class="lbl" x="16" y="191">Bluetooth</text>
+    <text class="cellyes" x="240" y="191" text-anchor="middle">BLE 4.2</text>
+    <text class="cellyes" x="390" y="191" text-anchor="middle">BLE 5.0</text>
+    <text class="cellyes" x="540" y="191" text-anchor="middle">BLE 5.3</text>
+    <text class="cell" x="700" y="191" text-anchor="middle">—</text>
+  </g>
+  <g>
+    <text class="lbl" x="16" y="225">802.15.4 (Zigbee/Thread)</text>
+    <text class="cell" x="240" y="225" text-anchor="middle">—</text>
+    <text class="cell" x="390" y="225" text-anchor="middle">—</text>
+    <text class="cellyes" x="540" y="225" text-anchor="middle">Yes</text>
+    <text class="cell" x="700" y="225" text-anchor="middle">—</text>
+  </g>
+  <g>
+    <rect class="zebra" x="0" y="238" width="800" height="34"/>
+    <text class="lbl" x="16" y="259">AI / vector instructions</text>
+    <text class="cell" x="240" y="259" text-anchor="middle">—</text>
+    <text class="cellyes" x="390" y="259" text-anchor="middle">Yes (SIMD)</text>
+    <text class="cell" x="540" y="259" text-anchor="middle">—</text>
+    <text class="cellyes" x="700" y="259" text-anchor="middle">Yes + NPU-ready</text>
+  </g>
+  <g>
+    <text class="lbl" x="16" y="293">Native USB (OTG)</text>
+    <text class="cell" x="240" y="293" text-anchor="middle">—</text>
+    <text class="cellyes" x="390" y="293" text-anchor="middle">Yes</text>
+    <text class="cell" x="540" y="293" text-anchor="middle">—</text>
+    <text class="cellyes" x="700" y="293" text-anchor="middle">Yes (high-speed)</text>
+  </g>
+  <g>
+    <rect class="zebra" x="0" y="306" width="800" height="34"/>
+    <text class="lbl" x="16" y="327">Typical role</text>
+    <text class="cell" x="240" y="327" text-anchor="middle">General Wi-Fi IoT</text>
+    <text class="cell" x="390" y="327" text-anchor="middle">Camera / TinyML</text>
+    <text class="cell" x="540" y="327" text-anchor="middle">Mesh / low-power</text>
+    <text class="cell" x="700" y="327" text-anchor="middle">Vision / HMI host</text>
+  </g>
+
+  <line class="grid" x1="0" y1="66" x2="0" y2="340"/>
+  <line class="grid" x1="800" y1="66" x2="800" y2="340"/>
+  <line class="grid" x1="165" y1="66" x2="165" y2="340"/>
+  <line class="grid" x1="315" y1="66" x2="315" y2="340"/>
+  <line class="grid" x1="465" y1="66" x2="465" y2="340"/>
+  <line class="grid" x1="615" y1="66" x2="615" y2="340"/>
+  <line class="grid" x1="0" y1="340" x2="800" y2="340"/>
+
+  <text class="sub" x="20" y="405">Figure: high-level positioning only — always confirm exact specs against the current Espressif datasheet before design-in.</text>
+</svg>

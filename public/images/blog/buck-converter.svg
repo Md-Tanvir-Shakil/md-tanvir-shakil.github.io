@@ -1,0 +1,88 @@
+<svg viewBox="0 0 800 460" xmlns="http://www.w3.org/2000/svg" font-family="'Segoe UI',Helvetica,Arial,sans-serif">
+  <style>
+    .bg{fill:#ffffff}
+    .title{fill:#14181f;font-size:19px;font-weight:700}
+    .sub{fill:#565e6c;font-size:12.5px}
+    .wire{stroke:#14181f;stroke-width:2;fill:none}
+    .comp{stroke:#1f5f6b;stroke-width:2;fill:none}
+    .lbl{fill:#14181f;font-size:13px;font-weight:600}
+    .val{fill:#565e6c;font-size:11.5px}
+    .wave{stroke:#1f5f6b;stroke-width:2;fill:none}
+    .axis{stroke:#565e6c;stroke-width:1}
+  </style>
+  <rect class="bg" width="800" height="460"/>
+  <text class="title" x="20" y="30">Synchronous Buck Converter — Topology &amp; Inductor Current</text>
+  <text class="sub" x="20" y="48">Step-down from 12 V input to a 3.3 V logic rail</text>
+
+  <!-- schematic -->
+  <g transform="translate(60,90)">
+    <!-- Vin rail -->
+    <line class="wire" x1="0" y1="20" x2="60" y2="20"/>
+    <text class="lbl" x="0" y="10">Vin (12V)</text>
+
+    <!-- high side switch -->
+    <rect class="comp" x="60" y="0" width="40" height="40"/>
+    <text class="val" x="80" y="24" text-anchor="middle">Q1</text>
+    <line class="wire" x1="100" y1="20" x2="150" y2="20"/>
+
+    <!-- switch node -->
+    <circle cx="150" cy="20" r="3" fill="#14181f"/>
+    <text class="val" x="150" y="8" text-anchor="middle">SW</text>
+
+    <!-- low side switch to gnd -->
+    <line class="wire" x1="150" y1="20" x2="150" y2="70"/>
+    <rect class="comp" x="130" y="70" width="40" height="40"/>
+    <text class="val" x="150" y="94" text-anchor="middle">Q2</text>
+    <line class="wire" x1="150" y1="110" x2="150" y2="130"/>
+    <line class="wire" x1="110" y1="130" x2="190" y2="130"/>
+    <line class="wire" x1="120" y1="136" x2="180" y2="136"/>
+    <line class="wire" x1="132" y1="142" x2="168" y2="142"/>
+    <text class="val" x="150" y="158" text-anchor="middle">GND</text>
+
+    <!-- inductor -->
+    <line class="wire" x1="150" y1="20" x2="220" y2="20"/>
+    <path class="comp" d="M220 20 q10 -18 20 0 q10 -18 20 0 q10 -18 20 0 q10 -18 20 0" />
+    <text class="lbl" x="260" y="0" text-anchor="middle">L</text>
+
+    <!-- output node -->
+    <line class="wire" x1="300" y1="20" x2="340" y2="20"/>
+    <circle cx="340" cy="20" r="3" fill="#14181f"/>
+
+    <!-- output cap -->
+    <line class="wire" x1="340" y1="20" x2="340" y2="70"/>
+    <line class="wire" x1="320" y1="70" x2="360" y2="70"/>
+    <line class="wire" x1="320" y1="78" x2="360" y2="78"/>
+    <line class="wire" x1="340" y1="78" x2="340" y2="130"/>
+    <text class="val" x="365" y="78">Cout</text>
+
+    <!-- load -->
+    <line class="wire" x1="340" y1="20" x2="440" y2="20"/>
+    <rect class="comp" x="440" y="0" width="30" height="40"/>
+    <text class="val" x="455" y="55" text-anchor="middle">Load</text>
+    <line class="wire" x1="455" y1="40" x2="455" y2="130"/>
+
+    <line class="wire" x1="150" y1="130" x2="455" y2="130"/>
+    <text class="lbl" x="400" y="10" text-anchor="middle">Vout (3.3V)</text>
+
+    <!-- feedback control block -->
+    <rect class="comp" x="70" y="180" width="150" height="50" stroke-dasharray="4 3"/>
+    <text class="val" x="145" y="200" text-anchor="middle">PWM Controller</text>
+    <text class="val" x="145" y="216" text-anchor="middle">(voltage-mode FB)</text>
+    <line class="wire" x1="340" y1="130" x2="340" y2="205" stroke-dasharray="3 3"/>
+    <line class="wire" x1="220" y1="205" x2="340" y2="205" stroke-dasharray="3 3"/>
+    <text class="val" x="280" y="198">Vfb</text>
+  </g>
+
+  <!-- waveform -->
+  <g transform="translate(560,110)">
+    <text class="lbl" x="90" y="-20" text-anchor="middle">Inductor current (IL)</text>
+    <line class="axis" x1="0" y1="140" x2="200" y2="140"/>
+    <line class="axis" x1="0" y1="0" x2="0" y2="140"/>
+    <polyline class="wave" points="0,100 25,40 25,40 50,100 50,100 75,40 75,40 100,100 100,100 125,40 125,40 150,100 150,100 175,40 175,40 200,100"/>
+    <text class="val" x="100" y="158" text-anchor="middle">time (switching period Ts)</text>
+    <text class="val" x="-8" y="45" text-anchor="end">Ipk</text>
+    <text class="val" x="-8" y="105" text-anchor="end">Imin</text>
+  </g>
+
+  <text class="sub" x="20" y="420">D = Vout / Vin sets the ideal duty cycle; L and Cout are sized from the allowable current ripple and output voltage ripple targets.</text>
+</svg>

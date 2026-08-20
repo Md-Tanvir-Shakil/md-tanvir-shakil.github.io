@@ -1,0 +1,58 @@
+<svg viewBox="0 0 800 440" xmlns="http://www.w3.org/2000/svg" font-family="'Segoe UI',Helvetica,Arial,sans-serif">
+  <style>
+    .bg{fill:#ffffff}
+    .title{fill:#14181f;font-size:19px;font-weight:700}
+    .sub{fill:#565e6c;font-size:12.5px}
+    .lbl{fill:#14181f;font-size:12.5px;font-weight:600}
+    .note{fill:#565e6c;font-size:11px}
+    .room{fill:#f7f8fa;stroke:#565e6c;stroke-width:1.5}
+    .gp{fill:#dfe3e8;stroke:#14181f;stroke-width:1.5}
+    .box{fill:#e5f0f1;stroke:#1f5f6b;stroke-width:1.5}
+    .dim{stroke:#565e6c;stroke-width:1}
+  </style>
+  <rect class="bg" width="800" height="440"/>
+  <text class="title" x="20" y="30">Low-Cost EMC Pre-Compliance Bench Setup</text>
+  <text class="sub" x="20" y="48">A near-field probe + spectrum analyzer setup catches most problems before a paid chamber session</text>
+
+  <rect class="room" x="40" y="80" width="720" height="300" rx="6"/>
+  <text class="note" x="60" y="100">Shielded room / quiet corner, away from Wi-Fi routers &amp; fluorescent lights</text>
+
+  <!-- ground plane bench -->
+  <rect class="gp" x="90" y="300" width="300" height="16"/>
+  <text class="note" x="240" y="332" text-anchor="middle">Grounded metal bench / ground plane</text>
+
+  <!-- DUT -->
+  <rect class="box" x="150" y="250" width="100" height="50"/>
+  <text class="lbl" x="200" y="280" text-anchor="middle">DUT</text>
+
+  <!-- near field probe -->
+  <line x1="200" y1="250" x2="230" y2="200" stroke="#1f5f6b" stroke-width="2"/>
+  <circle cx="232" cy="196" r="8" fill="none" stroke="#1f5f6b" stroke-width="2"/>
+  <text class="note" x="270" y="190">Near-field H/E probe</text>
+
+  <!-- cable to analyzer -->
+  <path d="M232 196 C 320 150, 420 150, 470 200" fill="none" stroke="#565e6c" stroke-width="1.5" stroke-dasharray="4 3"/>
+
+  <!-- spectrum analyzer box -->
+  <rect class="box" x="470" y="200" width="150" height="90"/>
+  <text class="lbl" x="545" y="230" text-anchor="middle">Spectrum</text>
+  <text class="lbl" x="545" y="248" text-anchor="middle">Analyzer / SDR</text>
+  <text class="note" x="545" y="268" text-anchor="middle">(9 kHz – 6 GHz typical)</text>
+
+  <!-- antenna for radiated -->
+  <rect x="650" y="150" width="10" height="80" fill="#14181f"/>
+  <line x1="655" y1="150" x2="655" y2="120" stroke="#14181f" stroke-width="2"/>
+  <line x1="640" y1="130" x2="670" y2="130" stroke="#14181f" stroke-width="2"/>
+  <text class="note" x="655" y="112" text-anchor="middle">Log-periodic /</text>
+  <text class="note" x="655" y="255" text-anchor="middle">biconical antenna</text>
+  <text class="note" x="655" y="268" text-anchor="middle">(1–3 m, radiated scan)</text>
+  <path d="M620 245 C 630 260, 640 260, 648 230" fill="none" stroke="#565e6c" stroke-width="1.5" stroke-dasharray="4 3"/>
+
+  <!-- LISN -->
+  <rect class="box" x="90" y="200" width="90" height="40"/>
+  <text class="lbl" x="135" y="225" text-anchor="middle" font-size="11">LISN</text>
+  <line x1="135" y1="240" x2="135" y2="250" stroke="#565e6c" stroke-width="1.5"/>
+  <text class="note" x="135" y="190">AC mains → conducted path</text>
+
+  <text class="note" x="60" y="405">Workflow: sweep near-field probe over the board to localize hot spots → confirm with a calibrated antenna at distance → fix at the source, not just the enclosure.</text>
+</svg>

@@ -1,0 +1,52 @@
+<svg viewBox="0 0 800 460" xmlns="http://www.w3.org/2000/svg" font-family="'Segoe UI',Helvetica,Arial,sans-serif">
+  <style>
+    .bg{fill:#ffffff}
+    .title{fill:#14181f;font-size:19px;font-weight:700}
+    .sub{fill:#565e6c;font-size:12.5px}
+    .lbl{fill:#14181f;font-size:13px;font-weight:600}
+    .note{fill:#565e6c;font-size:11.5px}
+    .cu{fill:#e5f0f1;stroke:#1f5f6b;stroke-width:1.5}
+    .diel{fill:#f7f8fa;stroke:#c8cdd4;stroke-width:1}
+    .dim{stroke:#565e6c;stroke-width:1}
+  </style>
+  <rect class="bg" width="800" height="460"/>
+  <text class="title" x="20" y="30">4-Layer PCB Stack-up for a Mixed-Signal Embedded Board</text>
+  <text class="sub" x="20" y="48">Signal-Ground-Power-Signal — keeps every trace close to a return plane</text>
+
+  <g transform="translate(220,80)">
+    <rect class="cu" x="0" y="0" width="360" height="18"/>
+    <text class="lbl" x="-20" y="13" text-anchor="end">L1</text>
+    <text class="note" x="380" y="13">Top Signal — high-speed digital, RF keepout respected</text>
+
+    <rect class="diel" x="0" y="18" width="360" height="40"/>
+    <text class="note" x="380" y="42">Prepreg, ~0.2 mm — controls L1↔L2 impedance</text>
+
+    <rect class="cu" x="0" y="58" width="360" height="18" fill="#dfe3e8"/>
+    <text class="lbl" x="-20" y="71" text-anchor="end">L2</text>
+    <text class="note" x="380" y="71">Solid Ground Plane — unbroken reference for L1 &amp; L3</text>
+
+    <rect class="diel" x="0" y="76" width="360" height="80" fill="#fbfbfc"/>
+    <text class="note" x="380" y="118">Core, ~1.0 mm — sets overall board thickness</text>
+
+    <rect class="cu" x="0" y="156" width="360" height="18" fill="#dfe3e8"/>
+    <text class="lbl" x="-20" y="169" text-anchor="end">L3</text>
+    <text class="note" x="380" y="169">Power Plane(s) — split by rail if multiple supplies</text>
+
+    <rect class="diel" x="0" y="174" width="360" height="40"/>
+    <text class="note" x="380" y="198">Prepreg, ~0.2 mm — controls L3↔L4 impedance</text>
+
+    <rect class="cu" x="0" y="214" width="360" height="18"/>
+    <text class="lbl" x="-20" y="227" text-anchor="end">L4</text>
+    <text class="note" x="380" y="227">Bottom Signal — lower-speed / low-noise nets</text>
+
+    <!-- overall thickness dim -->
+    <line class="dim" x1="-40" y1="0" x2="-40" y2="232"/>
+    <line class="dim" x1="-46" y1="0" x2="-34" y2="0"/>
+    <line class="dim" x1="-46" y1="232" x2="-34" y2="232"/>
+    <text class="note" x="-55" y="120" text-anchor="middle" transform="rotate(-90 -55 120)">~1.6 mm total</text>
+  </g>
+
+  <text class="note" x="20" y="380">Why it works: every signal layer sits directly adjacent to a solid plane, giving every trace a short, low-inductance return path —</text>
+  <text class="note" x="20" y="398">the single biggest lever for both signal integrity and radiated EMI on a 4-layer board.</text>
+  <text class="note" x="20" y="424">Route critical high-speed or RF traces on L1 only; avoid layer transitions that force the return current to jump reference planes.</text>
+</svg>
