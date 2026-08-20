@@ -14,7 +14,7 @@ software: []
 algorithms: []
 architectureNotes: "Camera and vision processing run on the ESP32-P4 board; the ESP32-C6 module provides Wi-Fi/wireless connectivity for remote notification and video access; a separate interconnected board carries the camera FPC, Ethernet jack, and auxiliary connectors, split across a three-board modular stack."
 results: ""
-myContribution: "Led hardware architecture as Senior Solution Architect (IoT, IIoT) at MBM Group: multi-board PCB design and ESP32-P4/ESP32-C6 system partitioning."
+myContribution: "Led hardware architecture and multi-board PCB design and ESP32-P4/ESP32-C6 system partitioning."
 images:
   - "/images/projects/smart-delivery-box-video-doorbell-1.jpeg"
 coverImage: "/images/projects/smart-delivery-box-video-doorbell-1.jpeg"
