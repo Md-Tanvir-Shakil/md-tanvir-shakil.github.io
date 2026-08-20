@@ -20,7 +20,9 @@ const {
   title, type, summary, problemStatement, approach, hardware, software, algorithms,
   architectureNotes, results, myContribution, githubRepo, demoUrl, documentationUrl,
   researchRelevance, technologies, categories, status, startDate, endDate,
+  coverImage, images,
 } = project.data;
+const gallery = images.filter((src) => src !== coverImage);
 
 const researchEntries = await getCollection("research");
 const relatedResearch = researchEntries.filter((r) => r.data.relatedProjects.includes(project.id));
@@ -52,6 +54,12 @@ const relatedResearch = researchEntries.filter((r) => r.data.relatedProjects.inc
       {documentationUrl && <Button href={documentationUrl} variant="ghost" external>Documentation →</Button>}
     </div>
 
+    {coverImage && (
+      <div class="mt-8 overflow-hidden rounded-lg border border-[var(--color-border)]">
+        <img src={coverImage} alt={title} loading="eager" decoding="async" class="w-full object-cover" />
+      </div>
+    )}
+
     <div class="mt-10 grid gap-10 lg:grid-cols-3">
       <div class="prose lg:col-span-2">
         {problemStatement && (<><h2>Problem</h2><p>{problemStatement}</p></>)}
@@ -63,6 +71,19 @@ const relatedResearch = researchEntries.filter((r) => r.data.relatedProjects.inc
         {results && (<><h2>Results</h2><p>{results}</p></>)}
         {myContribution && (<><h2>My Contribution</h2><p>{myContribution}</p></>)}
         {researchRelevance && (<><h2>Research Relevance</h2><p>{researchRelevance}</p></>)}
+
+        {gallery.length > 0 && (
+          <>
+            <h2>Gallery</h2>
+            <div class="not-prose grid grid-cols-2 gap-3 sm:grid-cols-3">
+              {gallery.map((src) => (
+                <div class="overflow-hidden rounded-lg border border-[var(--color-border)]">
+                  <img src={src} alt={title} loading="lazy" decoding="async" class="aspect-square w-full object-cover" />
+                </div>
+              ))}
+            </div>
+          </>
+        )}
       </div>
 
       <aside class="space-y-4">

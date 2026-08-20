@@ -7,13 +7,25 @@ interface Props {
   project: CollectionEntry<"projects">;
 }
 const { project } = Astro.props;
-const { title, summary, technologies, categories, status, startDate, endDate, type } = project.data;
+const { title, summary, technologies, categories, status, startDate, endDate, type, coverImage } = project.data;
 ---
 
 <a
   href={`/projects/${project.id}`}
-  class="group flex h-full flex-col rounded-lg border border-[var(--color-border)] bg-[var(--color-bg-elevated)] p-5 transition-colors hover:border-[var(--color-accent)]"
+  class="group flex h-full flex-col overflow-hidden rounded-lg border border-[var(--color-border)] bg-[var(--color-bg-elevated)] transition-colors hover:border-[var(--color-accent)]"
 >
+  {coverImage && (
+    <div class="aspect-video w-full overflow-hidden bg-[var(--color-bg)]">
+      <img
+        src={coverImage}
+        alt={title}
+        loading="lazy"
+        decoding="async"
+        class="h-full w-full object-cover transition-transform duration-200 group-hover:scale-[1.03]"
+      />
+    </div>
+  )}
+  <div class="flex h-full flex-col p-5">
   <div class="mb-2 flex items-center justify-between gap-2">
     <span class="font-mono text-[11px] uppercase tracking-wider text-[var(--color-text-muted)]">
       {type === "research" ? "Research Project" : "Engineering Project"}
@@ -44,4 +56,5 @@ const { title, summary, technologies, categories, status, startDate, endDate, ty
       {technologies.slice(0, 5).join(" · ")}
     </p>
   )}
+  </div>
 </a>
