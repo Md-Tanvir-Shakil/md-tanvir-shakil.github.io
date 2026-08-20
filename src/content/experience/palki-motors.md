@@ -13,7 +13,7 @@ achievements:
   - "Led the embedded systems team developing EV internal systems and a custom autonomous vehicle."
 technologies: ["Embedded Systems", "Electric Vehicles", "Autonomous Systems"]
 relatedProjects: []
-order: 4
+order: 5
 ---
 
 Embedded Systems Engineering Lead and Head of Department, leading EV internal-systems development and a custom autonomous car initiative.

@@ -11,7 +11,7 @@ responsibilities:
 achievements: []
 technologies: ["IoT"]
 relatedProjects: []
-order: 8
+order: 9
 ---
 
 Part-time role supporting IoT product development and inspection.

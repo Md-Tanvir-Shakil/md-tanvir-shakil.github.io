@@ -14,7 +14,7 @@ achievements:
   - "Built a multi-device fingerprint authentication system with Global Fingerprint Sync and 1:N matching in MicroPython."
 technologies: ["MicroPython", "Fingerprint Authentication", "Home Automation", "Custom APIs"]
 relatedProjects: ["smart-home-automation-fingerprint-security"]
-order: 7
+order: 8
 ---
 
 IoT Engineer — intelligent home automation with integrated smart security, including a multi-device fingerprint authentication system.

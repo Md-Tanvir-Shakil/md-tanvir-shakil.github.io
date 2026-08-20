@@ -14,7 +14,7 @@ achievements:
   - "Contributed PCB design and firmware to an engineering model CubeSat and prototype solid propulsion system."
 technologies: ["PCB Design", "Firmware", "CubeSat Systems", "3D Printing / Composites"]
 relatedProjects: ["cubesat-optimized-chassis", "cubesat-engineering-model-propulsion"]
-order: 3
+order: 4
 ---
 
 Junior Research Fellow, FY 2023 – FY 2025. Worked on small satellite (CubeSat) hardware and firmware for two research projects at SPARRSO.

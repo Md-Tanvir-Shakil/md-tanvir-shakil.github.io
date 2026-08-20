@@ -14,7 +14,7 @@ achievements:
   - "Led AIoT hardware-software integration across cross-functional teams for smart home electronics."
 technologies: ["Embedded AI", "AIoT", "Wi-Fi", "Bluetooth", "MQTT", "Firmware"]
 relatedProjects: []
-order: 1
+order: 2
 ---
 
 Current role. Focused on AI-driven embedded solutions for smart home electronics and intelligent automation.

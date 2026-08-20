@@ -12,7 +12,7 @@ achievements:
   - "Delivered PCB design, firmware, and system architecture for an AI-based livestock monitoring device."
 technologies: ["PCB Design", "Firmware", "Embedded AI", "IoT"]
 relatedProjects: ["cattle-estrus-detection-device"]
-order: 2
+order: 3
 ---
 
 Research Associate position focused on an AI-based wearable device for estrus detection in cattle — spanning PCB design, firmware, and overall system design.

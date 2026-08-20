@@ -14,7 +14,7 @@ achievements:
   - "Built an AIoT wearable combining TinyML, custom I2C drivers, BLE beacons, and MQTT for real-time livestock monitoring."
 technologies: ["TinyML", "I2C", "BLE", "MQTT", "PCB Design", "Firmware", "Low-Power Design"]
 relatedProjects: ["cattle-estrus-detection-device"]
-order: 5
+order: 6
 ---
 
 IoT Engineer role focused on an AIoT wearable device for cow estrus cycle detection, combining edge intelligence with low-power field-deployable hardware.
