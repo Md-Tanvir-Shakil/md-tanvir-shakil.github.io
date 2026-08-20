@@ -1,0 +1,40 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Section from "@/components/Section.astro";
+import ProjectCard from "@/components/ProjectCard.astro";
+import FilterBar from "@/components/FilterBar.astro";
+
+const projects = (await getCollection("projects", ({ data }) => !data.draft))
+  .sort((a, b) => a.data.order - b.data.order);
+
+const categories = Array.from(new Set(projects.flatMap((p) => p.data.categories))).sort();
+---
+
+<BaseLayout
+  title="Projects"
+  description="Research and engineering projects: ESP32/STM32 devices, IoT gateways, industrial monitoring, PCB design, firmware, and embedded AI systems."
+>
+  <Section
+    eyebrow="Projects"
+    title="Research &amp; Engineering Projects"
+    description="Real systems I've designed and built — hardware, firmware, and software."
+  >
+    {categories.length > 0 && <FilterBar options={categories} searchPlaceholder="Search projects..." />}
+
+    {projects.length === 0 ? (
+      <p class="text-[var(--color-text-muted)]">
+        [ADD PROJECTS via the CMS — Projects collection. An example entry ships with this template at
+        <code>src/content/projects/</code>.]
+      </p>
+    ) : (
+      <div data-filter-root class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {projects.map((project) => (
+          <div data-filter-item data-filter-tags={project.data.categories.join(",")}>
+            <ProjectCard project={project} />
+          </div>
+        ))}
+      </div>
+    )}
+  </Section>
+</BaseLayout>

@@ -1,0 +1,21 @@
+---
+interface Props {
+  label: string;
+  as?: "span" | "a";
+  href?: string;
+}
+const { label, as = "span", href } = Astro.props;
+---
+
+{as === "a" ? (
+  <a
+    href={href}
+    class="inline-flex items-center rounded-full border border-[var(--color-border)] bg-[var(--color-bg-elevated)] px-2.5 py-0.5 font-mono text-xs text-[var(--color-text-muted)] transition-colors hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]"
+  >
+    {label}
+  </a>
+) : (
+  <span class="inline-flex items-center rounded-full border border-[var(--color-border)] bg-[var(--color-bg-elevated)] px-2.5 py-0.5 font-mono text-xs text-[var(--color-text-muted)]">
+    {label}
+  </span>
+)}

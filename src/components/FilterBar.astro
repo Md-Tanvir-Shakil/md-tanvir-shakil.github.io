@@ -1,0 +1,85 @@
+---
+// Lightweight, dependency-free client-side filter.
+// Usage: give each filterable card container [data-filter-item] with
+// [data-filter-tags="Tag One,Tag Two"], and wrap the whole grid + this bar
+// in an element with [data-filter-root].
+interface Props {
+  options: string[];
+  searchPlaceholder?: string;
+}
+const { options, searchPlaceholder = "Search..." } = Astro.props;
+---
+
+<div class="mb-8 flex flex-col gap-4">
+  <input
+    type="search"
+    data-filter-search
+    placeholder={searchPlaceholder}
+    aria-label="Search"
+    class="w-full max-w-sm rounded-md border border-[var(--color-border)] bg-[var(--color-bg-elevated)] px-3 py-2 text-sm text-[var(--color-text)] placeholder:text-[var(--color-text-muted)] focus:border-[var(--color-accent)]"
+  />
+  <div class="flex flex-wrap gap-2" role="group" aria-label="Filter by category">
+    <button
+      type="button"
+      data-filter-btn
+      data-filter-value="All"
+      class="filter-btn is-active rounded-full border border-[var(--color-accent)] bg-[var(--color-accent-soft)] px-3 py-1 font-mono text-xs text-[var(--color-accent)]"
+    >
+      All
+    </button>
+    {options.map((opt) => (
+      <button
+        type="button"
+        data-filter-btn
+        data-filter-value={opt}
+        class="filter-btn rounded-full border border-[var(--color-border)] px-3 py-1 font-mono text-xs text-[var(--color-text-muted)] hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]"
+      >
+        {opt}
+      </button>
+    ))}
+  </div>
+  <p data-filter-empty class="hidden text-sm text-[var(--color-text-muted)]">
+    No items match your search/filter.
+  </p>
+</div>
+
+<script is:inline>
+  (function () {
+    const root = document.querySelector("[data-filter-root]");
+    if (!root) return;
+    const search = document.querySelector("[data-filter-search]");
+    const buttons = document.querySelectorAll("[data-filter-btn]");
+    const items = root.querySelectorAll("[data-filter-item]");
+    const emptyMsg = document.querySelector("[data-filter-empty]");
+    let activeCategory = "All";
+
+    function apply() {
+      const query = (search?.value || "").trim().toLowerCase();
+      let visibleCount = 0;
+      items.forEach((item) => {
+        const tags = (item.getAttribute("data-filter-tags") || "").toLowerCase();
+        const text = (item.textContent || "").toLowerCase();
+        const matchesCategory = activeCategory === "All" || tags.includes(activeCategory.toLowerCase());
+        const matchesQuery = !query || text.includes(query);
+        const visible = matchesCategory && matchesQuery;
+        item.classList.toggle("hidden", !visible);
+        if (visible) visibleCount++;
+      });
+      emptyMsg?.classList.toggle("hidden", visibleCount !== 0);
+    }
+
+    search?.addEventListener("input", apply);
+    buttons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        activeCategory = btn.getAttribute("data-filter-value") || "All";
+        buttons.forEach((b) => {
+          b.classList.remove("is-active", "border-[var(--color-accent)]", "bg-[var(--color-accent-soft)]", "text-[var(--color-accent)]");
+          b.classList.add("border-[var(--color-border)]", "text-[var(--color-text-muted)]");
+        });
+        btn.classList.add("is-active", "border-[var(--color-accent)]", "bg-[var(--color-accent-soft)]", "text-[var(--color-accent)]");
+        btn.classList.remove("border-[var(--color-border)]", "text-[var(--color-text-muted)]");
+        apply();
+      });
+    });
+  })();
+</script>

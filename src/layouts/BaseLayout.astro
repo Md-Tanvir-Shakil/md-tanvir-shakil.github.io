@@ -1,0 +1,39 @@
+---
+import BaseHead from "@/components/BaseHead.astro";
+import Navbar from "@/components/Navbar.astro";
+import Footer from "@/components/Footer.astro";
+import "@/styles/global.css";
+
+interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+  type?: "website" | "article" | "profile";
+  publishDate?: Date;
+  updatedDate?: Date;
+  scholarly?: { authors: string[]; venue?: string; doi?: string };
+  noindex?: boolean;
+}
+
+const props = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead {...props} />
+  </head>
+  <body class="flex min-h-screen flex-col bg-[var(--color-bg)] text-[var(--color-text)] antialiased">
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded-md focus:bg-[var(--color-accent)] focus:px-4 focus:py-2 focus:text-white"
+    >
+      Skip to content
+    </a>
+    <Navbar />
+    <main id="main-content" class="flex-1">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

@@ -1,0 +1,40 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Section from "@/components/Section.astro";
+import ResearchCard from "@/components/ResearchCard.astro";
+import FilterBar from "@/components/FilterBar.astro";
+
+const topics = (await getCollection("research", ({ data }) => !data.draft))
+  .sort((a, b) => a.data.order - b.data.order);
+
+const categories = Array.from(new Set(topics.flatMap((t) => t.data.tags))).sort();
+---
+
+<BaseLayout
+  title="Research"
+  description="Research interests: Embedded AI, Edge AI, TinyML, AIoT, Industrial IoT, computer vision for manufacturing, and related areas."
+>
+  <Section
+    eyebrow="Research"
+    title="Research Interests"
+    description="Topics I'm actively exploring, with an eye toward PhD / M.Sc. research. Not all are formal research yet — each entry states its current status."
+  >
+    {categories.length > 0 && <FilterBar options={categories} searchPlaceholder="Search research interests..." />}
+
+    {topics.length === 0 ? (
+      <p class="text-[var(--color-text-muted)]">
+        [ADD RESEARCH INTERESTS via the CMS — Research collection. An example entry ships with this
+        template at <code>src/content/research/</code>.]
+      </p>
+    ) : (
+      <div data-filter-root class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {topics.map((topic) => (
+          <div data-filter-item data-filter-tags={topic.data.tags.join(",")}>
+            <ResearchCard topic={topic} />
+          </div>
+        ))}
+      </div>
+    )}
+  </Section>
+</BaseLayout>

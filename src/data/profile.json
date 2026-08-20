@@ -1,0 +1,29 @@
+{
+  "name": "MD. Tanvir Shakil",
+  "title": "Embedded Systems Engineer | IoT / IIoT | AIoT | Edge AI | PCB & Firmware",
+  "tagline": "I design and build embedded hardware, firmware, and IoT systems — and I'm working toward graduate research in embedded AI and intelligent industrial systems.",
+  "summary": "[ADD 2-3 SENTENCE PROFESSIONAL SUMMARY — e.g. what you build, which layers of the stack you own (hardware/firmware/cloud), and the problem domain you focus on.]",
+  "location": "[ADD CITY, COUNTRY]",
+  "email": "[ADD EMAIL]",
+  "phone": "",
+  "availableFor": [
+    "PhD opportunities",
+    "M.Sc. / graduate research",
+    "Research collaboration",
+    "Embedded Systems / IoT engineering roles",
+    "AIoT / Edge AI projects",
+    "Technical consulting"
+  ],
+  "cvUrl": "/documents/cv.pdf",
+  "profileImage": "/images/profile-placeholder.svg",
+  "social": {
+    "github": "https://github.com/Md-Tanvir-Shakil",
+    "linkedin": "[ADD LINKEDIN URL, or leave empty string to hide]",
+    "googleScholar": "",
+    "orcid": "",
+    "researchGate": "",
+    "email": "[ADD EMAIL]"
+  },
+  "researchFocusSummary": "[ADD 1-2 SENTENCES ON CURRENT RESEARCH INTEREST — e.g. Edge AI for industrial condition monitoring on resource-constrained microcontrollers.]",
+  "currentFocus": "[ADD WHAT YOU ARE CURRENTLY WORKING ON]"
+}

@@ -1,0 +1,63 @@
+---
+import fs from "node:fs";
+import path from "node:path";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Section from "@/components/Section.astro";
+import Button from "@/components/Button.astro";
+import { profile } from "@/utils/site";
+
+// Build-time check so a missing CV never produces a silent broken download link.
+const cvPath = path.join(process.cwd(), "public", "documents", "cv.pdf");
+const cvExists = fs.existsSync(cvPath);
+---
+
+<BaseLayout title="CV / Resume" description={`Download the CV of ${profile.name}.`}>
+  <Section eyebrow="CV" title="CV / Resume">
+    {cvExists ? (
+      <div class="flex flex-wrap gap-3">
+        <Button href={profile.cvUrl} variant="primary" external>Download CV (PDF)</Button>
+        <Button href="/experience" variant="secondary">View Experience →</Button>
+      </div>
+    ) : (
+      <div class="rounded-lg border border-dashed border-[var(--color-border)] bg-[var(--color-bg-elevated)] p-6">
+        <p class="text-[var(--color-text)]">No CV file found yet.</p>
+        <p class="mt-2 text-sm text-[var(--color-text-muted)]">
+          Add your CV as <code>public/documents/cv.pdf</code> (via the CMS Media manager or by committing
+          the file directly) and this button will activate automatically on the next build.
+        </p>
+      </div>
+    )}
+
+    <div class="prose mt-10">
+      <h2>Web-based summary</h2>
+      <p>
+        A quick, print-friendly summary is below. For the full formatted CV, use the PDF download above.
+      </p>
+    </div>
+
+    <div class="mt-6 grid gap-6 print:gap-4 lg:grid-cols-3">
+      <div class="lg:col-span-2 space-y-6">
+        <div>
+          <h3 class="font-mono text-xs font-semibold uppercase tracking-widest text-[var(--color-accent)]">Summary</h3>
+          <p class="mt-2 text-sm text-[var(--color-text-muted)]">{profile.summary}</p>
+        </div>
+        <div>
+          <h3 class="font-mono text-xs font-semibold uppercase tracking-widest text-[var(--color-accent)]">See also</h3>
+          <ul class="mt-2 space-y-1 text-sm">
+            <li><a href="/experience" class="text-[var(--color-accent)] hover:underline">Full experience timeline</a></li>
+            <li><a href="/education" class="text-[var(--color-accent)] hover:underline">Education</a></li>
+            <li><a href="/skills" class="text-[var(--color-accent)] hover:underline">Technical skills</a></li>
+            <li><a href="/publications" class="text-[var(--color-accent)] hover:underline">Publications</a></li>
+          </ul>
+        </div>
+      </div>
+      <aside class="rounded-lg border border-[var(--color-border)] bg-[var(--color-bg-elevated)] p-5 print:hidden">
+        <p class="font-mono text-xs font-semibold uppercase tracking-widest text-[var(--color-accent)]">Tip</p>
+        <p class="mt-2 text-sm text-[var(--color-text-muted)]">
+          Use your browser's Print → Save as PDF on this page for a lightweight print view, separate
+          from the uploaded CV file.
+        </p>
+      </aside>
+    </div>
+  </Section>
+</BaseLayout>

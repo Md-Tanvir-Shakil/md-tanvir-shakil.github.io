@@ -1,0 +1,419 @@
+# Decap CMS configuration.
+# Docs: https://decapcms.org/docs/configuration-options/
+#
+# IMPORTANT — before first use:
+# 1. Set `repo` below to "OWNER/REPO" of your actual GitHub repository.
+# 2. Set `base_url` to the URL of your deployed OAuth proxy (see /oauth-proxy/README.md).
+#    Never point this at a proxy you don't control, and never embed a GitHub token here directly.
+# 3. If you use a project-site repo (not USERNAME.github.io), also confirm `branch` matches
+#    the branch your GitHub Actions workflow deploys from (usually `main`).
+
+backend:
+  name: github
+  repo: Md-Tanvir-Shakil/Md-Tanvir-Shakil.github.io # ADD/CONFIRM your actual repo
+  branch: main
+  base_url: https://YOUR-OAUTH-PROXY.example.workers.dev # ADD — see oauth-proxy/README.md
+  auth_endpoint: auth
+
+# Local dev: run `npx decap-server` alongside `npm run dev` and Decap CMS will use a
+# local git-backed proxy instead of GitHub OAuth — no external service needed while
+# developing on your own machine. See README "Editing content locally" section.
+local_backend: true
+
+publish_mode: editorial_workflow # every content change becomes a PR-like review via GitHub, reviewable before it hits `main`
+
+media_folder: "public/images/uploads"
+public_folder: "/images/uploads"
+
+site_url: https://Md-Tanvir-Shakil.github.io
+display_url: https://Md-Tanvir-Shakil.github.io
+logo_url: /favicon.svg
+
+collections:
+  # ---------------------------------------------------------------
+  # RESEARCH INTERESTS
+  # ---------------------------------------------------------------
+  - name: "research"
+    label: "Research Interests"
+    folder: "src/content/research"
+    create: true
+    slug: "{{slug}}"
+    identifier_field: title
+    format: frontmatter
+    extension: md
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Short Summary (Level 1/2)", name: "summary", widget: "text" }
+      - { label: "Detailed Description (Level 3)", name: "description", widget: "text", required: false }
+      - { label: "Motivation", name: "motivation", widget: "text", required: false }
+      - label: "Research Questions"
+        name: "researchQuestions"
+        widget: "list"
+        field: { label: "Question", name: "question", widget: "string" }
+        required: false
+      - label: "Technologies"
+        name: "technologies"
+        widget: "list"
+        field: { label: "Technology", name: "tech", widget: "string" }
+        required: false
+      - label: "Related Projects"
+        name: "relatedProjects"
+        widget: "relation"
+        collection: "projects"
+        search_fields: ["title"]
+        value_field: "{{slug}}"
+        display_fields: ["title"]
+        multiple: true
+        required: false
+      - label: "Related Publications"
+        name: "relatedPublications"
+        widget: "relation"
+        collection: "publications"
+        search_fields: ["title"]
+        value_field: "{{slug}}"
+        display_fields: ["title"]
+        multiple: true
+        required: false
+      - label: "Status"
+        name: "status"
+        widget: "select"
+        options: ["planned", "in-progress", "completed", "ongoing", "paused"]
+        default: "ongoing"
+      - { label: "Future Direction", name: "futureDirection", widget: "text", required: false }
+      - label: "Tags"
+        name: "tags"
+        widget: "list"
+        field: { label: "Tag", name: "tag", widget: "string" }
+        required: false
+      - { label: "Featured on homepage", name: "featured", widget: "boolean", default: false }
+      - { label: "Sort order (lower = first)", name: "order", widget: "number", default: 0 }
+      - { label: "Draft (hide from live site)", name: "draft", widget: "boolean", default: false }
+      - { label: "Body (long-form notes)", name: "body", widget: "markdown", required: false }
+
+  # ---------------------------------------------------------------
+  # PROJECTS (research + engineering)
+  # ---------------------------------------------------------------
+  - name: "projects"
+    label: "Projects"
+    folder: "src/content/projects"
+    create: true
+    slug: "{{slug}}"
+    identifier_field: title
+    format: frontmatter
+    extension: md
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - label: "Type"
+        name: "type"
+        widget: "select"
+        options: ["research", "engineering"]
+      - { label: "Summary", name: "summary", widget: "text" }
+      - { label: "Problem Statement", name: "problemStatement", widget: "text", required: false }
+      - { label: "Approach / Solution", name: "approach", widget: "text", required: false }
+      - label: "Hardware"
+        name: "hardware"
+        widget: "list"
+        field: { label: "Component", name: "item", widget: "string" }
+        required: false
+      - label: "Software"
+        name: "software"
+        widget: "list"
+        field: { label: "Component", name: "item", widget: "string" }
+        required: false
+      - label: "Algorithms"
+        name: "algorithms"
+        widget: "list"
+        field: { label: "Algorithm", name: "item", widget: "string" }
+        required: false
+      - { label: "Architecture Notes", name: "architectureNotes", widget: "text", required: false }
+      - { label: "Architecture Diagram", name: "architectureImage", widget: "image", required: false }
+      - { label: "Results", name: "results", widget: "text", required: false }
+      - { label: "My Contribution", name: "myContribution", widget: "text", required: false }
+      - label: "Gallery Images"
+        name: "images"
+        widget: "list"
+        field: { label: "Image", name: "src", widget: "image" }
+        required: false
+      - { label: "Cover Image", name: "coverImage", widget: "image", required: false }
+      - { label: "GitHub Repository URL", name: "githubRepo", widget: "string", required: false }
+      - { label: "Demo URL", name: "demoUrl", widget: "string", required: false }
+      - { label: "Documentation URL", name: "documentationUrl", widget: "string", required: false }
+      - { label: "Research Relevance", name: "researchRelevance", widget: "text", required: false }
+      - label: "Technologies"
+        name: "technologies"
+        widget: "list"
+        field: { label: "Technology", name: "tech", widget: "string" }
+        required: false
+      - label: "Categories"
+        name: "categories"
+        widget: "select"
+        multiple: true
+        options:
+          [
+            "Embedded Systems", "IoT", "IIoT", "AIoT", "Edge AI",
+            "Computer Vision", "PCB", "Firmware", "Industrial Automation", "Robotics",
+          ]
+        required: false
+      - label: "Status"
+        name: "status"
+        widget: "select"
+        options: ["planned", "in-progress", "completed", "ongoing", "paused"]
+        default: "completed"
+      - { label: "Start Date", name: "startDate", widget: "string", hint: "YYYY-MM", required: false }
+      - { label: "End Date", name: "endDate", widget: "string", hint: "YYYY-MM or 'present'", required: false }
+      - label: "Tags"
+        name: "tags"
+        widget: "list"
+        field: { label: "Tag", name: "tag", widget: "string" }
+        required: false
+      - { label: "Featured on homepage", name: "featured", widget: "boolean", default: false }
+      - { label: "Sort order (lower = first)", name: "order", widget: "number", default: 0 }
+      - { label: "Draft (hide from live site)", name: "draft", widget: "boolean", default: false }
+      - { label: "Body (full case study)", name: "body", widget: "markdown", required: false }
+
+  # ---------------------------------------------------------------
+  # PUBLICATIONS
+  # ---------------------------------------------------------------
+  - name: "publications"
+    label: "Publications"
+    folder: "src/content/publications"
+    create: true
+    slug: "{{slug}}"
+    identifier_field: title
+    format: frontmatter
+    extension: md
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - label: "Authors"
+        name: "authors"
+        widget: "list"
+        field: { label: "Author", name: "author", widget: "string" }
+      - { label: "Year", name: "year", widget: "number", required: false }
+      - { label: "Venue", name: "venue", widget: "string", required: false }
+      - label: "Type"
+        name: "type"
+        widget: "select"
+        options: ["journal", "conference", "preprint", "technical-report", "poster", "research-note"]
+        default: "conference"
+      - { label: "DOI", name: "doi", widget: "string", required: false }
+      - { label: "URL", name: "url", widget: "string", required: false }
+      - { label: "PDF (upload or URL)", name: "pdfUrl", widget: "file", required: false }
+      - { label: "Abstract", name: "abstract", widget: "text", required: false }
+      - label: "Keywords"
+        name: "keywords"
+        widget: "list"
+        field: { label: "Keyword", name: "kw", widget: "string" }
+        required: false
+      - { label: "Citation (BibTeX/APA)", name: "citation", widget: "text", required: false }
+      - label: "Status"
+        name: "status"
+        widget: "select"
+        options: ["published", "accepted", "submitted", "in-preparation"]
+        default: "in-preparation"
+      - { label: "Featured on homepage", name: "featured", widget: "boolean", default: false }
+      - { label: "Sort order (lower = first)", name: "order", widget: "number", default: 0 }
+      - { label: "Draft (hide from live site)", name: "draft", widget: "boolean", default: true }
+      - { label: "Body (notes)", name: "body", widget: "markdown", required: false }
+
+  # ---------------------------------------------------------------
+  # BLOG / TECHNICAL WRITING
+  # ---------------------------------------------------------------
+  - name: "blog"
+    label: "Writing"
+    folder: "src/content/blog"
+    create: true
+    slug: "{{slug}}"
+    identifier_field: title
+    format: frontmatter
+    extension: md
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "Updated Date", name: "updatedDate", widget: "datetime", required: false }
+      - { label: "Author", name: "author", widget: "string", default: "MD. Tanvir Shakil" }
+      - { label: "Summary", name: "summary", widget: "text" }
+      - label: "Tags"
+        name: "tags"
+        widget: "list"
+        field: { label: "Tag", name: "tag", widget: "string" }
+        required: false
+      - { label: "Category", name: "category", widget: "string", required: false }
+      - { label: "Cover Image", name: "coverImage", widget: "image", required: false }
+      - label: "Related Projects"
+        name: "relatedProjects"
+        widget: "relation"
+        collection: "projects"
+        search_fields: ["title"]
+        value_field: "{{slug}}"
+        display_fields: ["title"]
+        multiple: true
+        required: false
+      - label: "Related Research"
+        name: "relatedResearch"
+        widget: "relation"
+        collection: "research"
+        search_fields: ["title"]
+        value_field: "{{slug}}"
+        display_fields: ["title"]
+        multiple: true
+        required: false
+      - { label: "Featured", name: "featured", widget: "boolean", default: false }
+      - { label: "Draft (hide from live site)", name: "draft", widget: "boolean", default: false }
+      - { label: "Body", name: "body", widget: "markdown" }
+
+  # ---------------------------------------------------------------
+  # EXPERIENCE
+  # ---------------------------------------------------------------
+  - name: "experience"
+    label: "Experience"
+    folder: "src/content/experience"
+    create: true
+    slug: "{{slug}}"
+    identifier_field: company
+    format: frontmatter
+    extension: md
+    fields:
+      - { label: "Company", name: "company", widget: "string" }
+      - { label: "Position", name: "position", widget: "string" }
+      - { label: "Location", name: "location", widget: "string", required: false }
+      - { label: "Start Date", name: "startDate", widget: "string", hint: "YYYY-MM", required: false }
+      - { label: "End Date", name: "endDate", widget: "string", hint: "YYYY-MM or 'present'", required: false }
+      - { label: "Description", name: "description", widget: "text", required: false }
+      - label: "Responsibilities"
+        name: "responsibilities"
+        widget: "list"
+        field: { label: "Item", name: "item", widget: "string" }
+        required: false
+      - label: "Achievements (what you built / impact)"
+        name: "achievements"
+        widget: "list"
+        field: { label: "Item", name: "item", widget: "string" }
+        required: false
+      - label: "Technologies"
+        name: "technologies"
+        widget: "list"
+        field: { label: "Technology", name: "tech", widget: "string" }
+        required: false
+      - label: "Related Projects"
+        name: "relatedProjects"
+        widget: "relation"
+        collection: "projects"
+        search_fields: ["title"]
+        value_field: "{{slug}}"
+        display_fields: ["title"]
+        multiple: true
+        required: false
+      - { label: "Sort order (lower = first)", name: "order", widget: "number", default: 0 }
+      - { label: "Body", name: "body", widget: "markdown", required: false }
+
+  # ---------------------------------------------------------------
+  # EDUCATION
+  # ---------------------------------------------------------------
+  - name: "education"
+    label: "Education"
+    folder: "src/content/education"
+    create: true
+    slug: "{{slug}}"
+    identifier_field: degree
+    format: frontmatter
+    extension: md
+    fields:
+      - { label: "Degree", name: "degree", widget: "string" }
+      - { label: "University", name: "university", widget: "string" }
+      - { label: "Department", name: "department", widget: "string", required: false }
+      - { label: "Start Year", name: "startYear", widget: "string", required: false }
+      - { label: "End Year", name: "endYear", widget: "string", required: false }
+      - { label: "CGPA", name: "cgpa", widget: "string", required: false }
+      - label: "Relevant Coursework"
+        name: "relevantCoursework"
+        widget: "list"
+        field: { label: "Course", name: "course", widget: "string" }
+        required: false
+      - { label: "Thesis", name: "thesis", widget: "text", required: false }
+      - label: "Achievements"
+        name: "achievements"
+        widget: "list"
+        field: { label: "Item", name: "item", widget: "string" }
+        required: false
+      - { label: "Sort order (lower = first)", name: "order", widget: "number", default: 0 }
+      - { label: "Body", name: "body", widget: "markdown", required: false }
+
+  # ---------------------------------------------------------------
+  # WEBSITE SETTINGS (single-instance files — profile, skills, site config)
+  # ---------------------------------------------------------------
+  - name: "settings"
+    label: "Website Settings"
+    files:
+      - name: "profile"
+        label: "Profile"
+        file: "src/data/profile.json"
+        fields:
+          - { label: "Name", name: "name", widget: "string" }
+          - { label: "Professional Title", name: "title", widget: "string" }
+          - { label: "Tagline (hero)", name: "tagline", widget: "text" }
+          - { label: "Summary", name: "summary", widget: "text" }
+          - { label: "Location", name: "location", widget: "string", required: false }
+          - { label: "Email", name: "email", widget: "string" }
+          - { label: "Phone (optional, leave blank to hide)", name: "phone", widget: "string", required: false }
+          - label: "Available For"
+            name: "availableFor"
+            widget: "list"
+            field: { label: "Item", name: "item", widget: "string" }
+          - { label: "CV URL", name: "cvUrl", widget: "string", default: "/documents/cv.pdf" }
+          - { label: "Profile Image", name: "profileImage", widget: "image" }
+          - label: "Social Links"
+            name: "social"
+            widget: "object"
+            fields:
+              - { label: "GitHub", name: "github", widget: "string", required: false }
+              - { label: "LinkedIn", name: "linkedin", widget: "string", required: false }
+              - { label: "Google Scholar", name: "googleScholar", widget: "string", required: false }
+              - { label: "ORCID", name: "orcid", widget: "string", required: false }
+              - { label: "ResearchGate", name: "researchGate", widget: "string", required: false }
+              - { label: "Email", name: "email", widget: "string", required: false }
+          - { label: "Research Focus Summary", name: "researchFocusSummary", widget: "text", required: false }
+          - { label: "Current Focus", name: "currentFocus", widget: "text", required: false }
+
+      - name: "skills"
+        label: "Skills"
+        file: "src/data/skills.json"
+        fields:
+          - label: "Skill Groups"
+            name: "groups"
+            widget: "list"
+            fields:
+              - { label: "Category", name: "category", widget: "string" }
+              - label: "Items"
+                name: "items"
+                widget: "list"
+                field: { label: "Item", name: "item", widget: "string" }
+
+      - name: "site"
+        label: "Site Configuration & SEO"
+        file: "src/data/site.json"
+        fields:
+          - { label: "Site Title", name: "siteTitle", widget: "string" }
+          - { label: "Site Description", name: "siteDescription", widget: "text" }
+          - { label: "Site URL", name: "siteUrl", widget: "string" }
+          - { label: "GitHub Username", name: "githubUsername", widget: "string" }
+          - { label: "Twitter/X Handle (optional)", name: "twitterHandle", widget: "string", required: false }
+          - label: "Contact Form"
+            name: "contactForm"
+            widget: "object"
+            fields:
+              - { label: "Provider", name: "provider", widget: "select", options: ["web3forms", "none"] }
+              - { label: "Web3Forms Access Key (public key — safe client-side)", name: "accessKey", widget: "string" }
+          - label: "Analytics"
+            name: "analytics"
+            widget: "object"
+            fields:
+              - { label: "Provider", name: "provider", widget: "select", options: ["none", "plausible", "umami", "google-analytics"] }
+              - { label: "Site ID / Measurement ID", name: "id", widget: "string", required: false }
+          - label: "SEO"
+            name: "seo"
+            widget: "object"
+            fields:
+              - label: "Keywords"
+                name: "keywords"
+                widget: "list"
+                field: { label: "Keyword", name: "kw", widget: "string" }

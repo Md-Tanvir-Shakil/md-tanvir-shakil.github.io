@@ -1,0 +1,21 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Section from "@/components/Section.astro";
+import ExperienceTimeline from "@/components/ExperienceTimeline.astro";
+
+const experience = (await getCollection("experience")).sort((a, b) => a.data.order - b.data.order);
+---
+
+<BaseLayout title="Experience" description="Professional experience — what I built and its impact.">
+  <Section eyebrow="Experience" title="Professional Experience" description="What I built, and the impact it had.">
+    {experience.length === 0 ? (
+      <p class="text-[var(--color-text-muted)]">
+        [ADD EXPERIENCE via the CMS — Experience collection, or edit files in
+        <code>src/content/experience/</code>.]
+      </p>
+    ) : (
+      <ExperienceTimeline items={experience} />
+    )}
+  </Section>
+</BaseLayout>

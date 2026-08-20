@@ -1,0 +1,31 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Section from "@/components/Section.astro";
+import PublicationCard from "@/components/PublicationCard.astro";
+
+const publications = (await getCollection("publications", ({ data }) => !data.draft))
+  .sort((a, b) => (b.data.year ?? 0) - (a.data.year ?? 0));
+---
+
+<BaseLayout
+  title="Publications"
+  description="Publications & research outputs: journal papers, conference papers, preprints, technical reports, and posters."
+>
+  <Section
+    eyebrow="Publications"
+    title="Publications &amp; Research Outputs"
+    description="Peer-reviewed papers, preprints, technical reports, and posters."
+  >
+    {publications.length === 0 ? (
+      <p class="text-[var(--color-text-muted)]">
+        No publications yet — this section is ready to grow. Add entries via the CMS (Publications
+        collection) or edit files in <code>src/content/publications/</code>.
+      </p>
+    ) : (
+      <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {publications.map((pub) => <PublicationCard publication={pub} />)}
+      </div>
+    )}
+  </Section>
+</BaseLayout>

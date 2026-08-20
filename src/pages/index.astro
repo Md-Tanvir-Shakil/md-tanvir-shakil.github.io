@@ -1,0 +1,175 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Section from "@/components/Section.astro";
+import Button from "@/components/Button.astro";
+import Tag from "@/components/Tag.astro";
+import ResearchCard from "@/components/ResearchCard.astro";
+import ProjectCard from "@/components/ProjectCard.astro";
+import PublicationCard from "@/components/PublicationCard.astro";
+import SkillGroup from "@/components/SkillGroup.astro";
+import ExperienceTimeline from "@/components/ExperienceTimeline.astro";
+import { profile, skills, site } from "@/utils/site";
+
+const allResearch = (await getCollection("research", ({ data }) => !data.draft))
+  .sort((a, b) => a.data.order - b.data.order);
+const featuredResearch = allResearch.filter((r) => r.data.featured).slice(0, 3);
+
+const allProjects = (await getCollection("projects", ({ data }) => !data.draft))
+  .sort((a, b) => a.data.order - b.data.order);
+const featuredEngineering = allProjects.filter((p) => p.data.featured && p.data.type === "engineering").slice(0, 3);
+
+const allPublications = (await getCollection("publications", ({ data }) => !data.draft));
+const featuredPublications = allPublications.filter((p) => p.data.featured).slice(0, 3);
+
+const allBlog = (await getCollection("blog", ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const latestArticles = allBlog.slice(0, 3);
+
+const experience = (await getCollection("experience"))
+  .sort((a, b) => a.data.order - b.data.order)
+  .slice(0, 2);
+---
+
+<BaseLayout title={site.siteTitle} description={site.siteDescription} type="profile">
+  <!-- Hero -->
+  <section class="border-b border-[var(--color-border)] bg-[var(--color-bg-elevated)]">
+    <div class="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24">
+      <p class="mb-4 font-mono text-xs font-semibold uppercase tracking-widest text-[var(--color-accent)]">
+        Embedded Systems &middot; IoT/IIoT &middot; AIoT &middot; Edge AI
+      </p>
+      <h1 class="max-w-3xl text-4xl font-bold tracking-tight text-[var(--color-text)] sm:text-5xl">
+        {profile.name}
+      </h1>
+      <p class="mt-4 max-w-2xl text-lg text-[var(--color-text-muted)]">
+        {profile.title}
+      </p>
+      <p class="mt-6 max-w-2xl text-[var(--color-text-muted)]">
+        {profile.tagline}
+      </p>
+
+      <div class="mt-8 flex flex-wrap gap-3">
+        <Button href="/research" variant="primary">View Research</Button>
+        <Button href="/projects" variant="secondary">View Projects</Button>
+        <Button href="/experience" variant="secondary">View Experience</Button>
+        <Button href="/cv" variant="ghost">Download CV →</Button>
+      </div>
+
+      {profile.availableFor.length > 0 && (
+        <div class="mt-8 flex flex-wrap gap-2">
+          {profile.availableFor.map((a) => <Tag label={a} />)}
+        </div>
+      )}
+    </div>
+  </section>
+
+  <!-- Short introduction -->
+  <Section eyebrow="Introduction" title="Who I am">
+    <p class="max-w-3xl text-[var(--color-text-muted)]">{profile.summary}</p>
+    {profile.researchFocusSummary && (
+      <p class="mt-4 max-w-3xl text-[var(--color-text-muted)]">
+        <span class="font-semibold text-[var(--color-text)]">Current research focus: </span>
+        {profile.researchFocusSummary}
+      </p>
+    )}
+  </Section>
+
+  <!-- Research interests -->
+  {featuredResearch.length > 0 && (
+    <Section
+      eyebrow="Research"
+      title="Research Interests"
+      description="Areas I'm actively exploring and want to pursue at the graduate/PhD level."
+    >
+      <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {featuredResearch.map((topic) => <ResearchCard topic={topic} />)}
+      </div>
+      <div class="mt-6">
+        <Button href="/research" variant="ghost">View all research interests →</Button>
+      </div>
+    </Section>
+  )}
+
+  <!-- Featured engineering projects -->
+  {featuredEngineering.length > 0 && (
+    <Section
+      eyebrow="Projects"
+      title="Selected Engineering Projects"
+      description="Hardware, firmware, and IoT systems I've designed and built end to end."
+    >
+      <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {featuredEngineering.map((project) => <ProjectCard project={project} />)}
+      </div>
+      <div class="mt-6">
+        <Button href="/projects" variant="ghost">View all projects →</Button>
+      </div>
+    </Section>
+  )}
+
+  <!-- Technical expertise -->
+  <Section eyebrow="Skills" title="Technical Expertise">
+    <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {skills.groups.map((group) => <SkillGroup category={group.category} items={group.items} />)}
+    </div>
+  </Section>
+
+  <!-- Experience -->
+  {experience.length > 0 && (
+    <Section eyebrow="Experience" title="Recent Experience">
+      <ExperienceTimeline items={experience} />
+      <div class="mt-6">
+        <Button href="/experience" variant="ghost">View full experience →</Button>
+      </div>
+    </Section>
+  )}
+
+  <!-- Publications -->
+  {featuredPublications.length > 0 && (
+    <Section eyebrow="Publications" title="Selected Publications">
+      <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {featuredPublications.map((pub) => <PublicationCard publication={pub} />)}
+      </div>
+      <div class="mt-6">
+        <Button href="/publications" variant="ghost">View all publications →</Button>
+      </div>
+    </Section>
+  )}
+
+  <!-- Latest writing -->
+  {latestArticles.length > 0 && (
+    <Section eyebrow="Writing" title="Latest Technical Articles">
+      <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {latestArticles.map((post) => (
+          <a href={`/writing/${post.id}`} class="group rounded-lg border border-[var(--color-border)] bg-[var(--color-bg-elevated)] p-5 transition-colors hover:border-[var(--color-accent)]">
+            <p class="font-mono text-xs text-[var(--color-text-muted)]">
+              {post.data.date.toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" })}
+            </p>
+            <h3 class="mt-1 text-lg font-semibold text-[var(--color-text)] group-hover:text-[var(--color-accent)]">
+              {post.data.title}
+            </h3>
+            <p class="mt-2 text-sm text-[var(--color-text-muted)]">{post.data.summary}</p>
+          </a>
+        ))}
+      </div>
+      <div class="mt-6">
+        <Button href="/writing" variant="ghost">Read more articles →</Button>
+      </div>
+    </Section>
+  )}
+
+  <!-- CTA -->
+  <section class="border-t border-[var(--color-border)] bg-[var(--color-bg-elevated)]">
+    <div class="mx-auto max-w-6xl px-4 py-16 text-center sm:px-6">
+      <h2 class="text-2xl font-semibold text-[var(--color-text)] sm:text-3xl">
+        Open to research collaboration and engineering roles
+      </h2>
+      <p class="mx-auto mt-3 max-w-xl text-[var(--color-text-muted)]">
+        Reach out about PhD/M.Sc. supervision, research collaboration, embedded/IoT engineering roles, or technical consulting.
+      </p>
+      <div class="mt-6 flex flex-wrap justify-center gap-3">
+        <Button href="/contact" variant="primary">Contact Me</Button>
+        <Button href="/cv" variant="secondary">Download CV</Button>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

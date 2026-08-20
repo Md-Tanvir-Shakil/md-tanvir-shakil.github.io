@@ -1,0 +1,66 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Section from "@/components/Section.astro";
+import Button from "@/components/Button.astro";
+import { profile } from "@/utils/site";
+---
+
+<BaseLayout title="About" description={`Professional background of ${profile.name} — ${profile.title}.`}>
+  <Section eyebrow="About" title="Professional Profile">
+    <div class="grid gap-10 lg:grid-cols-3">
+      <div class="prose lg:col-span-2">
+        <p>{profile.summary}</p>
+
+        <h3>For academic and research audiences</h3>
+        <p>
+          [ADD 2-3 paragraphs framed for professors, PhD supervisors, and graduate admissions
+          committees: your research trajectory so far, the specific technical problems that
+          motivate you (e.g. resource-constrained inference, sensor fusion, industrial reliability),
+          and why you want to pursue formal research at the graduate level. Ground every claim in a
+          project, dataset, experiment, or result — avoid unsupported claims.]
+        </p>
+
+        <h3>For industry audiences</h3>
+        <p>
+          [ADD 2-3 paragraphs framed for hiring managers, CTOs, and technical leads: the systems
+          you've shipped, the stack layers you own (hardware → firmware → cloud/software), and the
+          measurable impact of your work. Be specific about scale, constraints, and outcomes.]
+        </p>
+
+        <h3>What I work on</h3>
+        <ul>
+          <li>Embedded systems &amp; real-time firmware (ESP32, STM32, FreeRTOS)</li>
+          <li>IoT / IIoT system architecture and device-to-cloud pipelines</li>
+          <li>AIoT and Edge AI — running inference on constrained hardware</li>
+          <li>PCB design and hardware bring-up</li>
+          <li>Computer vision for industrial monitoring</li>
+          <li>Industrial automation and machine/worker monitoring systems</li>
+        </ul>
+
+        <p class="text-sm italic">
+          [This section is intentionally placeholder-driven per your instructions — no fabricated
+          history or credentials. Replace the bracketed text via the CMS or by editing
+          <code>src/data/profile.json</code> and this file directly.]
+        </p>
+      </div>
+
+      <aside class="space-y-4">
+        <div class="rounded-lg border border-[var(--color-border)] bg-[var(--color-bg-elevated)] p-5">
+          <p class="font-mono text-xs font-semibold uppercase tracking-widest text-[var(--color-accent)]">
+            Currently
+          </p>
+          <p class="mt-2 text-sm text-[var(--color-text-muted)]">{profile.currentFocus}</p>
+        </div>
+        <div class="rounded-lg border border-[var(--color-border)] bg-[var(--color-bg-elevated)] p-5">
+          <p class="font-mono text-xs font-semibold uppercase tracking-widest text-[var(--color-accent)]">
+            Open to
+          </p>
+          <ul class="mt-2 list-disc space-y-1 pl-4 text-sm text-[var(--color-text-muted)]">
+            {profile.availableFor.map((a) => <li>{a}</li>)}
+          </ul>
+        </div>
+        <Button href="/contact" class="w-full">Get in touch</Button>
+      </aside>
+    </div>
+  </Section>
+</BaseLayout>

@@ -1,0 +1,106 @@
+---
+import { getCollection, render } from "astro:content";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Section from "@/components/Section.astro";
+import Tag from "@/components/Tag.astro";
+import Button from "@/components/Button.astro";
+import { formatDateRange } from "@/utils/site";
+
+export async function getStaticPaths() {
+  const projects = await getCollection("projects", ({ data }) => !data.draft);
+  return projects.map((project) => ({
+    params: { slug: project.id },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+const { Content } = await render(project);
+const {
+  title, type, summary, problemStatement, approach, hardware, software, algorithms,
+  architectureNotes, results, myContribution, githubRepo, demoUrl, documentationUrl,
+  researchRelevance, technologies, categories, status, startDate, endDate,
+} = project.data;
+
+const researchEntries = await getCollection("research");
+const relatedResearch = researchEntries.filter((r) => r.data.relatedProjects.includes(project.id));
+---
+
+<BaseLayout title={title} description={summary} image={project.data.coverImage}>
+  <Section>
+    <a href="/projects" class="text-sm text-[var(--color-accent)] hover:underline">← All projects</a>
+
+    <div class="mt-4 flex flex-wrap items-center gap-2">
+      <span class="rounded-full border border-[var(--color-border)] px-2 py-0.5 text-xs uppercase tracking-wide text-[var(--color-text-muted)]">
+        {type === "research" ? "Research Project" : "Engineering Project"}
+      </span>
+      <span class="rounded-full border border-[var(--color-border)] px-2 py-0.5 text-xs uppercase tracking-wide text-[var(--color-text-muted)]">
+        {status}
+      </span>
+      {categories.map((c) => <Tag label={c} />)}
+    </div>
+
+    <h1 class="mt-4 text-3xl font-bold tracking-tight text-[var(--color-text)] sm:text-4xl">{title}</h1>
+    <p class="mt-3 max-w-2xl text-lg text-[var(--color-text-muted)]">{summary}</p>
+    {(startDate || endDate) && (
+      <p class="mt-2 font-mono text-sm text-[var(--color-text-muted)]">{formatDateRange(startDate, endDate)}</p>
+    )}
+
+    <div class="mt-6 flex flex-wrap gap-3">
+      {githubRepo && <Button href={githubRepo} variant="secondary" external>GitHub Repository</Button>}
+      {demoUrl && <Button href={demoUrl} variant="secondary" external>Live Demo</Button>}
+      {documentationUrl && <Button href={documentationUrl} variant="ghost" external>Documentation →</Button>}
+    </div>
+
+    <div class="mt-10 grid gap-10 lg:grid-cols-3">
+      <div class="prose lg:col-span-2">
+        {problemStatement && (<><h2>Problem</h2><p>{problemStatement}</p></>)}
+        {approach && (<><h2>Solution / Approach</h2><p>{approach}</p></>)}
+        {architectureNotes && (<><h2>Architecture</h2><p>{architectureNotes}</p></>)}
+
+        <Content />
+
+        {results && (<><h2>Results</h2><p>{results}</p></>)}
+        {myContribution && (<><h2>My Contribution</h2><p>{myContribution}</p></>)}
+        {researchRelevance && (<><h2>Research Relevance</h2><p>{researchRelevance}</p></>)}
+      </div>
+
+      <aside class="space-y-4">
+        {hardware.length > 0 && (
+          <div class="rounded-lg border border-[var(--color-border)] bg-[var(--color-bg-elevated)] p-5">
+            <p class="font-mono text-xs font-semibold uppercase tracking-widest text-[var(--color-accent)]">Hardware</p>
+            <ul class="mt-2 list-disc space-y-1 pl-4 text-sm text-[var(--color-text-muted)]">{hardware.map((h) => <li>{h}</li>)}</ul>
+          </div>
+        )}
+        {software.length > 0 && (
+          <div class="rounded-lg border border-[var(--color-border)] bg-[var(--color-bg-elevated)] p-5">
+            <p class="font-mono text-xs font-semibold uppercase tracking-widest text-[var(--color-accent)]">Software</p>
+            <ul class="mt-2 list-disc space-y-1 pl-4 text-sm text-[var(--color-text-muted)]">{software.map((s) => <li>{s}</li>)}</ul>
+          </div>
+        )}
+        {algorithms.length > 0 && (
+          <div class="rounded-lg border border-[var(--color-border)] bg-[var(--color-bg-elevated)] p-5">
+            <p class="font-mono text-xs font-semibold uppercase tracking-widest text-[var(--color-accent)]">Algorithms</p>
+            <ul class="mt-2 list-disc space-y-1 pl-4 text-sm text-[var(--color-text-muted)]">{algorithms.map((a) => <li>{a}</li>)}</ul>
+          </div>
+        )}
+        {technologies.length > 0 && (
+          <div class="rounded-lg border border-[var(--color-border)] bg-[var(--color-bg-elevated)] p-5">
+            <p class="font-mono text-xs font-semibold uppercase tracking-widest text-[var(--color-accent)]">Technologies</p>
+            <div class="mt-2 flex flex-wrap gap-1.5">{technologies.map((t) => <Tag label={t} />)}</div>
+          </div>
+        )}
+        {relatedResearch.length > 0 && (
+          <div class="rounded-lg border border-[var(--color-border)] bg-[var(--color-bg-elevated)] p-5">
+            <p class="font-mono text-xs font-semibold uppercase tracking-widest text-[var(--color-accent)]">Related Research</p>
+            <ul class="mt-2 space-y-1 text-sm">
+              {relatedResearch.map((r) => (
+                <li><a href={`/research/${r.id}`} class="text-[var(--color-accent)] hover:underline">{r.data.title}</a></li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </aside>
+    </div>
+  </Section>
+</BaseLayout>

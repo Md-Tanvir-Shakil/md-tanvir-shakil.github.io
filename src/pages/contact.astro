@@ -1,0 +1,136 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Section from "@/components/Section.astro";
+import { profile, site } from "@/utils/site";
+
+const hasWeb3Forms = site.contactForm.provider === "web3forms" && !site.contactForm.accessKey.startsWith("[ADD");
+
+const socialLinks = [
+  { key: "email", label: "Email", prefix: "mailto:" },
+  { key: "github", label: "GitHub", prefix: "" },
+  { key: "linkedin", label: "LinkedIn", prefix: "" },
+  { key: "googleScholar", label: "Google Scholar", prefix: "" },
+  { key: "orcid", label: "ORCID", prefix: "" },
+  { key: "researchGate", label: "ResearchGate", prefix: "" },
+] as const;
+
+const social: Record<string, string> = profile.social;
+
+const visible = socialLinks.filter((s) => {
+  const v = social[s.key];
+  return v && v.length > 0 && !v.startsWith("[ADD");
+});
+---
+
+<BaseLayout title="Contact" description={`Get in touch with ${profile.name} about research collaboration, graduate opportunities, or engineering roles.`}>
+  <Section
+    eyebrow="Contact"
+    title="Let's Connect"
+    description="Open to PhD/M.Sc. supervision conversations, research collaboration, embedded/IoT engineering roles, and technical consulting."
+  >
+    <div class="grid gap-10 lg:grid-cols-2">
+      <div>
+        {hasWeb3Forms ? (
+          <form
+            id="contact-form"
+            action="https://api.web3forms.com/submit"
+            method="POST"
+            class="space-y-4"
+          >
+            <input type="hidden" name="access_key" value={site.contactForm.accessKey} />
+            <input type="hidden" name="subject" value={`New portfolio contact from {{name}}`} />
+            <input type="checkbox" name="botcheck" class="hidden" style="display:none" tabindex="-1" autocomplete="off" />
+
+            <div>
+              <label for="name" class="block text-sm font-medium text-[var(--color-text)]">Name</label>
+              <input id="name" name="name" type="text" required
+                class="mt-1 w-full rounded-md border border-[var(--color-border)] bg-[var(--color-bg-elevated)] px-3 py-2 text-sm text-[var(--color-text)] focus:border-[var(--color-accent)]" />
+            </div>
+            <div>
+              <label for="email" class="block text-sm font-medium text-[var(--color-text)]">Email</label>
+              <input id="email" name="email" type="email" required
+                class="mt-1 w-full rounded-md border border-[var(--color-border)] bg-[var(--color-bg-elevated)] px-3 py-2 text-sm text-[var(--color-text)] focus:border-[var(--color-accent)]" />
+            </div>
+            <div>
+              <label for="form-subject" class="block text-sm font-medium text-[var(--color-text)]">Subject</label>
+              <input id="form-subject" name="subject_line" type="text" required
+                class="mt-1 w-full rounded-md border border-[var(--color-border)] bg-[var(--color-bg-elevated)] px-3 py-2 text-sm text-[var(--color-text)] focus:border-[var(--color-accent)]" />
+            </div>
+            <div>
+              <label for="message" class="block text-sm font-medium text-[var(--color-text)]">Message</label>
+              <textarea id="message" name="message" rows="5" required
+                class="mt-1 w-full rounded-md border border-[var(--color-border)] bg-[var(--color-bg-elevated)] px-3 py-2 text-sm text-[var(--color-text)] focus:border-[var(--color-accent)]"></textarea>
+            </div>
+            <button type="submit"
+              class="rounded-md bg-[var(--color-accent)] px-4 py-2 text-sm font-medium text-white transition-opacity hover:opacity-90">
+              Send Message
+            </button>
+            <p id="contact-status" class="text-sm" role="status" aria-live="polite"></p>
+          </form>
+        ) : (
+          <div class="rounded-lg border border-dashed border-[var(--color-border)] bg-[var(--color-bg-elevated)] p-6">
+            <p class="text-[var(--color-text)]">Contact form not yet configured.</p>
+            <p class="mt-2 text-sm text-[var(--color-text-muted)]">
+              This site uses <a href="https://web3forms.com" target="_blank" rel="noopener noreferrer" class="text-[var(--color-accent)] hover:underline">Web3Forms</a>
+              to handle messages without a backend server (GitHub Pages can't run server code). Get a free
+              access key and set it in <code>src/data/site.json</code> under <code>contactForm.accessKey</code>.
+              Until then, please use the direct links.
+            </p>
+          </div>
+        )}
+      </div>
+
+      <div class="space-y-4">
+        <h3 class="font-mono text-xs font-semibold uppercase tracking-widest text-[var(--color-accent)]">Direct links</h3>
+        <ul class="space-y-2">
+          {visible.map((s) => {
+            const value = social[s.key];
+            const href = s.prefix ? `${s.prefix}${value}` : value;
+            return (
+              <li>
+                <a href={href} target={s.prefix ? undefined : "_blank"} rel="noopener noreferrer"
+                  class="text-[var(--color-accent)] hover:underline">
+                  {s.label}
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+        {visible.length === 0 && (
+          <p class="text-sm text-[var(--color-text-muted)]">
+            [ADD EMAIL / SOCIAL LINKS in <code>src/data/profile.json</code> to display them here.]
+          </p>
+        )}
+      </div>
+    </div>
+  </Section>
+</BaseLayout>
+
+<script is:inline>
+  (function () {
+    const form = document.getElementById("contact-form");
+    const status = document.getElementById("contact-status");
+    if (!form) return;
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      if (status) { status.textContent = "Sending..."; status.className = "text-sm text-[var(--color-text-muted)]"; }
+      const data = new FormData(form);
+      try {
+        const res = await fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          headers: { Accept: "application/json" },
+          body: data,
+        });
+        const json = await res.json();
+        if (json.success) {
+          form.reset();
+          if (status) { status.textContent = "Message sent — thank you, I'll reply soon."; status.className = "text-sm text-[var(--color-accent)]"; }
+        } else {
+          throw new Error(json.message || "Submission failed");
+        }
+      } catch (err) {
+        if (status) { status.textContent = "Something went wrong. Please email me directly instead."; status.className = "text-sm text-red-500"; }
+      }
+    });
+  })();
+</script>

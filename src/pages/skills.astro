@@ -1,0 +1,14 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Section from "@/components/Section.astro";
+import SkillGroup from "@/components/SkillGroup.astro";
+import { skills } from "@/utils/site";
+---
+
+<BaseLayout title="Skills" description="Technical skills across embedded systems, hardware, communication protocols, AI/computer vision, and IoT/IIoT.">
+  <Section eyebrow="Skills" title="Technical Skills" description="Grouped by domain — edit src/data/skills.json or the CMS Website Settings to update.">
+    <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {skills.groups.map((group) => <SkillGroup category={group.category} items={group.items} />)}
+    </div>
+  </Section>
+</BaseLayout>

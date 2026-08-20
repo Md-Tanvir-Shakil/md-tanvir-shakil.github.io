@@ -1,0 +1,28 @@
+{
+  "groups": [
+    {
+      "category": "Embedded Systems",
+      "items": ["ESP32", "STM32", "CH32", "Embedded C", "Embedded C++", "ESP-IDF", "FreeRTOS", "Bare-metal firmware", "Bootloaders"]
+    },
+    {
+      "category": "Hardware",
+      "items": ["PCB Design", "KiCad", "Power Electronics", "Sensor Interfacing", "Hardware Debugging (oscilloscope/logic analyzer)", "Signal Integrity Basics"]
+    },
+    {
+      "category": "Communication Protocols",
+      "items": ["MQTT", "BLE", "Wi-Fi", "Zigbee", "UART", "I2C", "SPI", "RS-485", "Modbus"]
+    },
+    {
+      "category": "AI / Computer Vision",
+      "items": ["Edge AI", "TinyML", "OpenCV", "Computer Vision", "Anomaly Detection", "Machine Learning Fundamentals"]
+    },
+    {
+      "category": "IoT / IIoT",
+      "items": ["IoT System Architecture", "Industrial IoT", "Device Management", "Edge Computing", "MQTT Broker Design"]
+    },
+    {
+      "category": "Software & Tools",
+      "items": ["Python", "C", "C++", "Linux", "Git", "Docker", "[ADD MORE AS RELEVANT]"]
+    }
+  ]
+}

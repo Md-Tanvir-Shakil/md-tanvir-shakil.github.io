@@ -1,0 +1,13 @@
+name = "portfolio-cms-oauth"
+main = "worker.js"
+compatibility_date = "2025-01-01"
+
+# Secrets (GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET) are set via:
+#   wrangler secret put GITHUB_CLIENT_ID
+#   wrangler secret put GITHUB_CLIENT_SECRET
+# Do NOT put them in this file or in [vars] — [vars] is committed to git in plaintext.
+
+[vars]
+# Optional: restrict which origin is allowed to receive the postMessage.
+# Set to your live site, e.g. "https://Md-Tanvir-Shakil.github.io"
+ALLOWED_ORIGIN = "*"

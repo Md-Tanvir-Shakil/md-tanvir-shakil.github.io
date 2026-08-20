@@ -1,0 +1,45 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Section from "@/components/Section.astro";
+import FilterBar from "@/components/FilterBar.astro";
+import { readingTime } from "@/utils/site";
+
+const posts = (await getCollection("blog", ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const categories = Array.from(new Set(posts.map((p) => p.data.category).filter(Boolean))) as string[];
+---
+
+<BaseLayout
+  title="Writing"
+  description="Technical writing on embedded systems, IoT, firmware architecture, PCB design, TinyML, and Edge AI."
+>
+  <Section eyebrow="Writing" title="Technical Writing" description="Notes on embedded systems, IoT, firmware, and research experiments.">
+    {categories.length > 0 && <FilterBar options={categories} searchPlaceholder="Search articles..." />}
+
+    {posts.length === 0 ? (
+      <p class="text-[var(--color-text-muted)]">
+        [ADD ARTICLES via the CMS — Blog collection. An example post ships with this template at
+        <code>src/content/blog/</code>.]
+      </p>
+    ) : (
+      <div data-filter-root class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {posts.map((post) => (
+          <div data-filter-item data-filter-tags={[post.data.category, ...post.data.tags].filter(Boolean).join(",")}>
+            <a href={`/writing/${post.id}`} class="group flex h-full flex-col rounded-lg border border-[var(--color-border)] bg-[var(--color-bg-elevated)] p-5 transition-colors hover:border-[var(--color-accent)]">
+              <p class="font-mono text-xs text-[var(--color-text-muted)]">
+                {post.data.date.toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" })}
+                {" · "}{readingTime(post.body ?? "")}
+              </p>
+              <h3 class="mt-1 text-lg font-semibold text-[var(--color-text)] group-hover:text-[var(--color-accent)]">
+                {post.data.title}
+              </h3>
+              <p class="mt-2 flex-1 text-sm text-[var(--color-text-muted)]">{post.data.summary}</p>
+            </a>
+          </div>
+        ))}
+      </div>
+    )}
+  </Section>
+</BaseLayout>

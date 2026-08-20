@@ -1,0 +1,113 @@
+---
+import { site, profile } from "@/utils/site";
+
+interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+  /** For article/blog pages: adds Article + BreadcrumbList schema */
+  type?: "website" | "article" | "profile";
+  publishDate?: Date;
+  updatedDate?: Date;
+  /** Adds ScholarlyArticle JSON-LD (publications) */
+  scholarly?: {
+    authors: string[];
+    venue?: string;
+    doi?: string;
+  };
+  noindex?: boolean;
+}
+
+const {
+  title,
+  description = site.siteDescription,
+  image = "/images/og-default.svg",
+  type = "website",
+  publishDate,
+  updatedDate,
+  scholarly,
+  noindex = false,
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const fullTitle = title === site.siteTitle ? title : `${title} — ${profile.name}`;
+const absoluteImage = new URL(image, Astro.site).toString();
+
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: profile.name,
+  jobTitle: profile.title,
+  url: site.siteUrl,
+  email: profile.email?.startsWith("[ADD") ? undefined : `mailto:${profile.email}`,
+  sameAs: Object.values(profile.social).filter(
+    (v): v is string => typeof v === "string" && v.length > 0 && !v.startsWith("[ADD")
+  ),
+};
+
+const articleSchema =
+  type === "article" && publishDate
+    ? {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        headline: title,
+        description,
+        datePublished: publishDate.toISOString(),
+        dateModified: (updatedDate ?? publishDate).toISOString(),
+        author: { "@type": "Person", name: profile.name },
+        image: absoluteImage,
+      }
+    : null;
+
+const scholarlySchema = scholarly
+  ? {
+      "@context": "https://schema.org",
+      "@type": "ScholarlyArticle",
+      headline: title,
+      author: scholarly.authors.map((name) => ({ "@type": "Person", name })),
+      ...(scholarly.venue ? { isPartOf: scholarly.venue } : {}),
+      ...(scholarly.doi ? { sameAs: `https://doi.org/${scholarly.doi}` } : {}),
+    }
+  : null;
+---
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="sitemap" href="/sitemap-index.xml" />
+<link rel="canonical" href={canonicalURL} />
+<meta name="generator" content={Astro.generator} />
+
+<title>{fullTitle}</title>
+<meta name="description" content={description} />
+{noindex && <meta name="robots" content="noindex, nofollow" />}
+
+<!-- Open Graph -->
+<meta property="og:type" content={type === "article" ? "article" : "website"} />
+<meta property="og:url" content={canonicalURL} />
+<meta property="og:title" content={fullTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={absoluteImage} />
+<meta property="og:site_name" content={profile.name} />
+
+<!-- Twitter / X -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={fullTitle} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={absoluteImage} />
+{site.twitterHandle && <meta name="twitter:site" content={site.twitterHandle} />}
+
+<!-- Theme init (before paint, avoids flash of wrong theme) -->
+<script is:inline>
+  (function () {
+    const stored = localStorage.getItem("theme");
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const theme = stored ?? (prefersDark ? "dark" : "light");
+    document.documentElement.setAttribute("data-theme", theme);
+  })();
+</script>
+
+<!-- Structured data -->
+<script is:inline type="application/ld+json" set:html={JSON.stringify(personSchema)} />
+{articleSchema && <script is:inline type="application/ld+json" set:html={JSON.stringify(articleSchema)} />}
+{scholarlySchema && <script is:inline type="application/ld+json" set:html={JSON.stringify(scholarlySchema)} />}

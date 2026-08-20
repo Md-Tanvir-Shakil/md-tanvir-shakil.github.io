@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://Md-Tanvir-Shakil.github.io/sitemap-index.xml
