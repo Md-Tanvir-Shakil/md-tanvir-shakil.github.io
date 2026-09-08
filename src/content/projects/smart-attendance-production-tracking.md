@@ -15,7 +15,7 @@ algorithms:
   - "Real-time work-time and NPT tracking per operator session"
 architectureNotes: "RFID tap authenticates the operator and starts a work session; a QR/barcode scan associates the session with a production style; the terminal tracks work time, NPT, and target-vs-achieved counts locally and displays them live, networked over Wi-Fi (device IP shown on-screen) for centralized monitoring."
 results: ""
-myContribution: "Led development as Senior Solution Architect (IoT, IIoT) at MBM Group: system design, embedded UI, and RFID/QR integration."
+myContribution: "Led development for full system design, embedded UI, and RFID/QR integration."
 images:
   - "/images/projects/smart-attendance-production-tracking-1.jpeg"
   - "/images/projects/smart-attendance-production-tracking-2.jpeg"
