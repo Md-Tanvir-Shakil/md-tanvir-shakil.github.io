@@ -8,7 +8,6 @@ import ResearchCard from "@/components/ResearchCard.astro";
 import ProjectCard from "@/components/ProjectCard.astro";
 import PublicationCard from "@/components/PublicationCard.astro";
 import SkillGroup from "@/components/SkillGroup.astro";
-import ExperienceTimeline from "@/components/ExperienceTimeline.astro";
 import { profile, skills, site } from "@/utils/site";
 
 const allResearch = (await getCollection("research", ({ data }) => !data.draft))
@@ -25,10 +24,6 @@ const featuredPublications = allPublications.filter((p) => p.data.featured).slic
 const allBlog = (await getCollection("blog", ({ data }) => !data.draft))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 const latestArticles = allBlog.slice(0, 3);
-
-const experience = (await getCollection("experience"))
-  .sort((a, b) => a.data.order - b.data.order)
-  .slice(0, 2);
 ---
 
 <BaseLayout title={site.siteTitle} description={site.siteDescription} type="profile">
@@ -51,8 +46,6 @@ const experience = (await getCollection("experience"))
       <div class="mt-8 flex flex-wrap gap-3">
         <Button href="/research" variant="primary">View Research</Button>
         <Button href="/projects" variant="secondary">View Projects</Button>
-        <Button href="/experience" variant="secondary">View Experience</Button>
-        <Button href="/cv" variant="ghost">Download CV →</Button>
       </div>
 
       {profile.availableFor.length > 0 && (
@@ -113,16 +106,6 @@ const experience = (await getCollection("experience"))
     </div>
   </Section>
 
-  <!-- Experience -->
-  {experience.length > 0 && (
-    <Section eyebrow="Experience" title="Recent Experience">
-      <ExperienceTimeline items={experience} />
-      <div class="mt-6">
-        <Button href="/experience" variant="ghost">View full experience →</Button>
-      </div>
-    </Section>
-  )}
-
   <!-- Publications -->
   {featuredPublications.length > 0 && (
     <Section eyebrow="Publications" title="Selected Publications">
@@ -168,7 +151,6 @@ const experience = (await getCollection("experience"))
       </p>
       <div class="mt-6 flex flex-wrap justify-center gap-3">
         <Button href="/contact" variant="primary">Contact Me</Button>
-        <Button href="/cv" variant="secondary">Download CV</Button>
       </div>
     </div>
   </section>
